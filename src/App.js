@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "normalize.css";
 import Home from "./Pages/Home.js";
+import Timeline from "./Pages/Timeline/index.js";
 import styled from "styled-components";
 
 /* const ApiURL = process.env.REACT_APP_API_URL; */
@@ -13,12 +14,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/timeline" element={<Timeline />} /> 
           {/*         <Route path="/signup" element={<Signup />} />
             <Route path="/signin" element={<signin />} /> 
             <Route path="/timeline" element={<Timeline />} /> 
-             <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Register />} />
-
+            <Route path="/user" element={<User />} />
 */}
         </Routes>
         </BrowserRouter>
