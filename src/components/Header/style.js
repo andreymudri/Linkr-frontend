@@ -18,23 +18,19 @@ export const Container = styled.div`
     color: #ffffff;
     margin-left: 28px;
   }
-  .searchHidden {
-    @media (max-width: 768px) {
-      display: none;
-    }
-  }
-  .image {
-    display: flex;
-    align-items: center;
-    img {
-      width: 53px;
-      height: 53px;
-      border-radius: 26.5px;
-      margin-right: 17px;
-      background: pink;
-    }
-  }
 `;
+export const SubContainer = styled.div`
+display: flex;
+align-items: center;
+img {
+  width: 53px;
+  height: 53px;
+  border-radius: 26.5px;
+  margin-right: 17px;
+  background: pink;
+}
+`;
+
 export const Icon = styled(BiChevronDown)`
   font-size: 41px;
   margin-right: 16px;
