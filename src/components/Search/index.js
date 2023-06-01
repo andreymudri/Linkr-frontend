@@ -4,7 +4,7 @@ import { DebounceInput } from "react-debounce-input";
 import { useState } from "react";
 
 export default function Search() {
-  const [search, setSearch] = useState();
+  const [search, setSearch] = useState(null);
   const [disabled, setDisabled] = useState(true);
 
   const handleInputChange = (event) => {
@@ -17,7 +17,7 @@ export default function Search() {
     searchApi
       .getSearch(searchValue)
       .then((res) => setSearch(res.data))
-      .catch((err) => console.log(err.response.data));
+      .catch((err) => alert(err.response.data));
   };
 
   return (
