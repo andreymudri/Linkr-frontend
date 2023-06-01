@@ -18,7 +18,12 @@ export const Container = styled.div`
     color: #ffffff;
     margin-left: 28px;
   }
-  div {
+  .searchHidden {
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+  .image {
     display: flex;
     align-items: center;
     img {
@@ -26,7 +31,7 @@ export const Container = styled.div`
       height: 53px;
       border-radius: 26.5px;
       margin-right: 17px;
-      background-color: #ffffff;
+      background: pink;
     }
   }
 `;

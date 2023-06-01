@@ -7,19 +7,23 @@ export const Container = styled.div`
   background: #e7e7e7;
   display: flex;
   flex-direction: column;
+  width: 563px;
+  @media (max-width: 768px) {
+    width: 350px;
+  }
 `;
 
 export const ContainerSearch = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 563px;
   height: 45px;
   background-color: #ffffff;
   border: transparent;
   border-radius: 8px;
   input {
-    width: 563px;
+    width: 100%;
     border: transparent;
     background-color: transparent;
     margin-left: 17px;
@@ -42,7 +46,8 @@ export const SearchIcon = styled(HiMagnifyingGlass)`
 `;
 
 export const SearchUsers = styled.div`
-  width: 563px;
+  max-width: 563px;
+  width: 100%;
   height: 75px;
   display: flex;
   justify-content: flex-start;

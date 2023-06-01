@@ -1,10 +1,14 @@
 import Header from "../../components/Header";
-import { Container } from "./style";
+import Search from "../../components/Search";
+import { Container, Mobile } from "./style";
 
 export default function Timeline() {
   return (
     <Container>
       <Header />
+      <Mobile>
+        <Search />
+      </Mobile>
     </Container>
   );
 }
