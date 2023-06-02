@@ -21,13 +21,13 @@ export const Container = styled.div`
   }
 `;
 export const SubContainer = styled.div`
-display: flex;
-align-items: center;
+  display: flex;
+  align-items: center;
 `;
 
 export const UserImage = styled(Image)`
-margin-right: 17px;
-`
+  margin-right: 17px;
+`;
 
 export const Icon = styled(BiChevronDown)`
   font-size: 41px;
