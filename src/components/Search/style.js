@@ -53,6 +53,7 @@ export const SearchUsers = styled.div`
   justify-content: flex-start;
   align-items: center;
   h3 {
+    margin-left: 17px;
     font-family: "Lato";
     font-style: normal;
     font-weight: 400;
@@ -67,7 +68,7 @@ export const SearchUsers = styled.div`
     border-radius: 304px;
   }
   ${(props) =>
-    props.visibility &&
+    props.disabled &&
     css`
       display: none;
     `}
