@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { BiChevronDown } from "react-icons/bi";
+import { Image } from "../UserImage/style";
 
 export const Container = styled.div`
   display: flex;
@@ -22,14 +23,11 @@ export const Container = styled.div`
 export const SubContainer = styled.div`
 display: flex;
 align-items: center;
-img {
-  width: 53px;
-  height: 53px;
-  border-radius: 26.5px;
-  margin-right: 17px;
-  background: pink;
-}
 `;
+
+export const UserImage = styled(Image)`
+margin-right: 17px;
+`
 
 export const Icon = styled(BiChevronDown)`
   font-size: 41px;
