@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import UserHeardline from "../../components/UserHeardline";
 
 export default function User() {
-  const [user, setUser] = useState([{ id: 7, image: "", username: "aaa" }]);
+  const [user, setUser] = useState(null);
   const { id } = useParams();
 
   function getUser() {

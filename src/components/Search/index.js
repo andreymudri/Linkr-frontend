@@ -4,7 +4,7 @@ import { DebounceInput } from "react-debounce-input";
 import { useState } from "react";
 
 export default function Search() {
-  const [search, setSearch] = useState([{ id:7, image: "", username: "aaa" }]);
+  const [search, setSearch] = useState(null);
   const [disabled, setDisabled] = useState(true);
 
   const handleInputChange = (event) => {
@@ -16,8 +16,11 @@ export default function Search() {
     const searchValue = event.target.value;
     searchApi
       .getSearch(searchValue)
-      .then((res) => setSearch(res.data))
-      .catch((err) => alert(err.response.data));
+      .then((res) => {
+        console.log(res.data);
+        setSearch(res.data);
+      })
+      .catch((err) => console.log(err.response.data));
   };
 
   return (

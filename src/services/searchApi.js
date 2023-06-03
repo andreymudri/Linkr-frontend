@@ -1,8 +1,18 @@
 import axios from "axios";
 
-function getSearch(searchValue) {
+function createConfig(token) {
+  return {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+}
+
+function getSearch(searchValue, token) {
   const promise = axios.get(
-    `${process.env.REACT_APP_BASE_URL}/search/query?searchValue=${searchValue}`
+    `${process.env.REACT_APP_API_URL}/search/query?searchValue=${searchValue}`,
+    {},
+    createConfig(token)
   );
   return promise;
 }
