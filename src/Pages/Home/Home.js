@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Content, MainContainer, Sidebar } from "./Home.styles.js";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ApiURL } from "../../App.js";
+import UserContext from "../../contexts/UserContext.js";
+import TokenContext from "../../contexts/TokenContext.js";
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -11,6 +13,8 @@ export default function Home() {
   const [username, setUsername] = useState("");
   const [authOption, setAuthoption] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { setUser } = useContext(UserContext);
+  const { setToken } = useContext(TokenContext);
   const navigate = useNavigate();
   const bodysignIn = {
     email,
@@ -38,6 +42,8 @@ export default function Home() {
       .post(`${ApiURL}/signin`, bodysignIn)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
+        setUser(res.data.user)
+        setToken(res.data.token)
         localStorage.setItem("user", res.data.user);
         navigate("/timeline");
         setLoading(false);
