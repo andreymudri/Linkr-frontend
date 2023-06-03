@@ -3,14 +3,18 @@ import Search from "../../components/Search";
 import { Container, Mobile, Title, UserImage, Post, 
 PublishContainer, Text, Url, Description, Button, 
 PostContainer, PrincipalContainer, TrendingContainer } from "./style";
+import TokenContext from "../../contexts/TokenContext.js";
+import { useContext } from "react";
 
 export default function Timeline() {
+  const { token } = useContext(TokenContext);
+
   return (
     <PrincipalContainer>
     <Container>
       <Header />
       <Mobile>
-        <Search />
+        <Search data-test={"user-search"} token={token} />
       </Mobile>
       <Title>timeline</Title>
       <PublishContainer>

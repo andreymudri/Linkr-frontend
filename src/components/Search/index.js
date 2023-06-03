@@ -2,8 +2,9 @@ import searchApi from "../../services/searchApi";
 import { Container, ContainerSearch, SearchIcon, SearchUsers } from "./style";
 import { DebounceInput } from "react-debounce-input";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
-export default function Search() {
+export default function Search({ token }) {
   const [search, setSearch] = useState(null);
   const [disabled, setDisabled] = useState(true);
 
@@ -15,7 +16,7 @@ export default function Search() {
     }
     const searchValue = event.target.value;
     searchApi
-      .getSearch(searchValue)
+      .getSearch(searchValue, token)
       .then((res) => {
         console.log(res.data);
         setSearch(res.data);
@@ -24,7 +25,7 @@ export default function Search() {
   };
 
   return (
-    <Container disabled={disabled}>
+    <Container disabled={disabled} data-test={"user-search"}>
       <ContainerSearch>
         <DebounceInput
           minLength={3}
@@ -36,10 +37,12 @@ export default function Search() {
       </ContainerSearch>
       {search &&
         search.map((s) => (
-          <SearchUsers key={s.id} disabled={disabled}>
-            <img src={s.image} alt={s.username} />
-            <h3>{s.username}aaa</h3>
-          </SearchUsers>
+          <Link to={`/user/${s.id}`}>
+            <SearchUsers key={s.id} disabled={disabled}>
+              <img src={s.image} alt={s.username} />
+              <h3>{s.username}aaa</h3>
+            </SearchUsers>
+          </Link>
         ))}
     </Container>
   );
