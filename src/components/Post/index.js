@@ -19,7 +19,7 @@ export default function Post (){
                         <Url>https://medium.com/@pshrmn/a-simple-react-router</Url>
                     </ContainerTexts>
                     <ContainerPhoto>
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX-AaOdDIQvj85-Zei3mUYLiR_G0-xdeNbuA&usqp=CAU" alt="Post image" />
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX-AaOdDIQvj85-Zei3mUYLiR_G0-xdeNbuA&usqp=CAU" alt="Preview post" />
                     </ContainerPhoto>
                 </ContainerPreview>
             </Container>
