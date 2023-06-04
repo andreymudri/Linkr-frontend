@@ -4,8 +4,12 @@ import Post from "../../components/Post";
 import { Container, Mobile, Title, UserImage, 
 PublishContainer, Text, Url, Description, Button, 
 PostContainer, PrincipalContainer, TrendingContainer } from "./style";
+import TokenContext from "../../contexts/TokenContext.js";
+import { useContext } from "react";
 
 export default function Timeline() {
+  const { token } = useContext(TokenContext);
+
   return (
     <PrincipalContainer>
       <Container>
@@ -26,7 +30,6 @@ export default function Timeline() {
         </PostContainer>
       </Container>
       <TrendingContainer>
-
       </TrendingContainer>
     </PrincipalContainer>
   );
