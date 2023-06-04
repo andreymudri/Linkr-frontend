@@ -15,7 +15,7 @@ export default function Timeline() {
       <Container>
         <Header />
         <Mobile>
-          <Search />
+          <Search token={token} />
         </Mobile>
         <Title>timeline</Title>
         <PublishContainer>

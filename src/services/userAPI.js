@@ -11,7 +11,6 @@ function createConfig(token) {
 function getUserById(id, token) {
   const promise = axios.get(
     `${process.env.REACT_APP_API_URL}/user/${id}`,
-    {},
     createConfig(token)
   );
   return promise;

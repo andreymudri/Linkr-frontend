@@ -17,10 +17,7 @@ export default function Search({ token }) {
     const searchValue = event.target.value;
     searchApi
       .getSearch(searchValue, token)
-      .then((res) => {
-        console.log(res.data);
-        setSearch(res.data);
-      })
+      .then((res) => setSearch(res.data))
       .catch((err) => console.log(err.response.data));
   };
 
