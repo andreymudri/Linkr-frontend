@@ -60,7 +60,7 @@ color: #FFFFFF;
 }
 `;
 
-export const PublishContainer = styled.div`
+export const PublishContainer = styled.form`
 position: relative;
 width: 611px;
 height: 209px;
