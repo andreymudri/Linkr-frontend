@@ -8,8 +8,8 @@ import UserContext from "./contexts/UserContext.js";
 import { useState } from "react";
 import TokenContext from "./contexts/TokenContext.js";
 
-/* const ApiURL = process.env.REACT_APP_API_URL; */
-const ApiURL = "http://localhost:5000";
+const ApiURL = process.env.REACT_APP_API_URL;
+
 function App() {
   const [user, setUser] = useState({});
   const [token, setToken] = useState({});
