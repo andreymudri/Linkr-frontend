@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import {Image} from "../../components/UserImage/style";
 
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
-  position:relative;
   overflow-y: auto; 
   ::-webkit-scrollbar {
     width: 0px;
@@ -19,7 +19,7 @@ export const PrincipalContainer = styled.div`
   height: 100%;
 `
 export const TrendingContainer = styled.div`
-position: absolute;
+position: fixed;
 width: 301px;
 height: 406px;
 left: 877px;
@@ -41,9 +41,8 @@ export const Mobile = styled.div`
 export const Title = styled.div`
 width: 145px;
 height: 64px;
-position: absolute;
-left: 241px;
-top: 125px;
+margin-left: 241px;
+margin-top: 53px;
 font-family: 'Oswald';
 font-style: normal;
 font-weight: 700;
@@ -65,8 +64,8 @@ export const PublishContainer = styled.div`
 position: relative;
 width: 611px;
 height: 209px;
-left: 241px;
-top: 180px;
+margin-left: 241px;
+margin-top: 43px;
 background: #FFFFFF;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 border-radius: 16px;
@@ -171,8 +170,8 @@ export const PostContainer = styled.div`
 width: 611px;
 height: 100%;
 position: relative;
-top: 210px;
-left: 241px;
+margin-top: 29px;
+margin-left: 241px;
 background: #333333;
 @media (max-width: 768px) {
   width: 100vw;
@@ -180,15 +179,6 @@ background: #333333;
   top: 130px;
 }
 `
-export const Post = styled.div`
-width: 611px;
-height: 276px;
-background: #171717;
-border-radius: 16px;
-margin-bottom: 16px;
-@media (max-width: 768px) {
-  width: 100vw;
-}
-`
+
 
 
