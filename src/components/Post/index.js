@@ -91,7 +91,7 @@ export default function Post ({posts, updatePostsList}){
                 })
                 .catch(err => {
                     setDisableInput(false);
-                    console.log(err)})
+                    toast.error("The edit can't be saved! Try again later.")})
         }
     }
 
@@ -111,14 +111,14 @@ export default function Post ({posts, updatePostsList}){
             .then(res => {
                 setDeleting(false)
                 setIsOpen(false)
-                toast(res.data)
+                toast("Post deleted successfully!")
                 updatePostsList()
             })
             .catch(err => {
                 setDeleting(false)
                 setIsOpen(false)
                 console.log(err)
-                toast.error("Não foi possível excluir o post!")
+                toast.error("This post can't be deleted! Try again later.")
             })
     }
     
