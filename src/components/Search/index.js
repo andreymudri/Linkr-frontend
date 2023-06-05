@@ -1,3 +1,4 @@
+
 import searchApi from "../../services/searchApi";
 import { Container, ContainerSearch, SearchIcon, SearchUsers } from "./style";
 import { DebounceInput } from "react-debounce-input";
@@ -12,16 +13,19 @@ export default function Search({ token }) {
 
   const handleInputChange = (event) => {
     if (event.target.value === "") {
-      setDisabled(true);
+      setDisabled(true)
     } else {
-      setDisabled(false);
+      setDisabled(false)
     }
-    const searchValue = event.target.value;
+    const searchValue = event.target.value
     searchApi
       .getSearch(searchValue, token)
-      .then((res) => setSearch(res.data))
-      .catch((err) => console.log(err.response.data));
-  };
+      .then((res) => {
+        console.log(res.data)
+        setSearch(res.data)
+      })
+      .catch((err) => console.log(err.response.data))
+  }
 
   function Page(id) {
     console.log(id);
@@ -57,5 +61,5 @@ export default function Search({ token }) {
           </SearchUsers>
         ))}
     </Container>
-  );
+  )
 }

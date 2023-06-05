@@ -58,7 +58,9 @@ export default function HashtagPage() {
       <TrendingContainer>
         <div>trending</div>
         {trendingHashtags.map((h) => (
-          <HashtagLink to={`/hashtag/${h.name}`}># {h.name}</HashtagLink>
+          <HashtagLink key={h.id} to={`/hashtag/${h.name}`}>
+            # {h.name}
+          </HashtagLink>
         ))}
       </TrendingContainer>
     </PrincipalContainer>

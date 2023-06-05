@@ -64,7 +64,7 @@ export default function Timeline() {
       <PrincipalContainer>
         <ToastContainer />
         <Container>
-          <Header />
+          <Header token={token} />
           <Mobile>
             <Search token={token} />
           </Mobile>
@@ -146,9 +146,7 @@ export default function Timeline() {
           </Button>
         </PublishContainer>
 
-        
-        <Post posts={posts} updatePostsList={updatePostsList}/>
-
+        <Post posts={posts} updatePostsList={updatePostsList} />
       </Container>
       <TrendingContainer>
         <div>trending</div>
