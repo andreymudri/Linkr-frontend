@@ -1,8 +1,5 @@
-import { useContext } from "react"
-import postApi from "../services/postsApi.js"
 import { LikesContainer } from "./Post/style.js"
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai"
-import TokenContext from "../contexts/TokenContext.js"
 
 export default function Likes({
   likers,
