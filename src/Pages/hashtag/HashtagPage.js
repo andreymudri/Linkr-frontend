@@ -28,7 +28,6 @@ export default function HashtagPage() {
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
-    setPosts([])
     postApi
       .getPostsByHashtag(hashtagUrl, config)
       .then((res) => {

@@ -21,6 +21,8 @@ import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import UserContext from "../../contexts/UserContext"
 import TokenContext from "../../contexts/TokenContext"
+import postApi from "../../services/postsApi.js"
+import { HashtagLink } from "../hashtag/style.js"
 
 export default function Timeline() {
   const formInitialState = {
@@ -37,7 +39,7 @@ export default function Timeline() {
   const [posts, setPosts] = useState(null)
   const [formData, setFormData] = useState(formInitialState)
   const [publishing, setPublishing] = useState(false)
-
+  const [trendingHashtags, setTrendingHashtags] = useState([])
   useEffect(() => {
     axios
       .get(`${ApiURL}/posts`, config)
@@ -50,6 +52,11 @@ export default function Timeline() {
           "An error occured while trying to fetch the posts, please refresh the page"
         )
       })
+
+    postApi
+      .getTrendingHashtags()
+      .then((res) => setTrendingHashtags(res.data))
+      .catch((err) => toast.error("Error on loading trending hashtags"))
   }, [])
 
   if (posts === null) {
@@ -141,7 +148,12 @@ export default function Timeline() {
 
         <Post posts={posts} />
       </Container>
-      <TrendingContainer></TrendingContainer>
+      <TrendingContainer>
+        <div>trending</div>
+        {trendingHashtags.map((h) => (
+          <HashtagLink to={`/hashtag/${h.name}`}># {h.name}</HashtagLink>
+        ))}
+      </TrendingContainer>
     </PrincipalContainer>
   )
 }
