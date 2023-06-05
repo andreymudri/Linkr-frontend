@@ -12,8 +12,9 @@ export default function Post ({posts}){
     const [metaDataList, setMetaDataList] = useState([]);
     const [descriptionInput, setDescriptionInput] = useState([]);
     const [newDescription, setNewDescription] = useState("");
-    const {user} = useContext(UserContext);
-    const descriptionRef = useRef();
+    const [editingIndex, setEditingIndex] = useState(-1);
+    const user = JSON.parse(localStorage.getItem("user"));
+    const descriptionRef = useRef(null);
 
     useEffect(() => {
         posts.forEach((p) => {
@@ -23,11 +24,25 @@ export default function Post ({posts}){
     }, [posts]);
 
     useEffect(() => {
-        if (descriptionInput.some(input => input)) {
-            descriptionRef.current.focus();
+        if (editingIndex !== -1 && descriptionRef.current) {
+          descriptionRef.current.focus();
         }
-    }, [descriptionInput]);
+      }, [editingIndex]);
 
+    
+    useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+        window.removeEventListener('keydown', handleKeyDown);
+    };
+    }, []);
+
+    function handleKeyDown(event) {
+        if (event.key === 'Escape') {
+            setEditingIndex(-1);
+            setNewDescription('');
+        }
+    }
 
     function getMetaData(url) {
         axios.get(`https://jsonlink.io/api/extract?url=${url}`)
@@ -47,10 +62,13 @@ export default function Post ({posts}){
     }
 
     function modificateDescription(index, description){
-        const newDescriptionInput = [...descriptionInput];
-        newDescriptionInput[index] = false;
-        setDescriptionInput(newDescriptionInput);
-        setNewDescription(description)
+        if (editingIndex === index) {
+            setEditingIndex(-1);
+            setNewDescription('');
+          } else {
+            setEditingIndex(index);
+            setNewDescription(description);
+          }
     }
     function editPost (id){
         return
@@ -73,7 +91,7 @@ export default function Post ({posts}){
                         {p.userId === user.id ? (
                             <Icons>
                                 <EditIcon onClick={() => {
-                                    if (descriptionInput[index] === true) {
+                                    if (descriptionInput[index] === true ) {
                                         modificateDescription(index, p.description);
                                     }
                                     const newDescriptionInput = [...descriptionInput]
@@ -88,21 +106,22 @@ export default function Post ({posts}){
                            "" 
                         )}   
                     </ContainerOptions>
-                    {descriptionInput[index] ? (
-                        <DescriptionInput
+                    {editingIndex === index ? (
+                    <DescriptionInput
                         ref={descriptionRef}
                         value={newDescription}
-                        onChange={(e) => setNewDescription(e.target.value )}
-                        />
-                    ): (
-                        <Description>{p.description === null || p.description === "" && p.hashtags === null ? (
-                            ""
+                        onChange={(e) =>{ 
+                            console.log(e.target.value)
+                            setNewDescription(e.target.value)}}
+                    />
+                    ) : (
+                    <Description>
+                        {p.description === null || p.description === '' ? (
+                        ''
                         ) : (
-                            p.description + (p.hashtags !== null
-                                ? " " +
-                                  p.hashtags.map((h) => <strong>#{h.hashtag}</strong>).join(" ")
-                                : "")
-                        ) }</Description>
+                        p.description
+                        )}
+                    </Description>
                     )}
                     <ContainerPreview>
                         <ContainerTexts>
