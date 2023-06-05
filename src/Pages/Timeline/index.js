@@ -18,8 +18,8 @@ export default function Timeline() {
     description: ""
   }
   
-  const { token } = useContext(TokenContext);
-  const {user} = useContext(UserContext);
+  const token = JSON.parse(localStorage.getItem("token"));
+  const user = JSON.parse(localStorage.getItem("user"));
   console.log(token)
   console.log(user)
   
