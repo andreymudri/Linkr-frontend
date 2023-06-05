@@ -11,7 +11,7 @@ import Modal from "react-modal";
 import TokenContext from "../../contexts/TokenContext"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-export default function Post ({posts}){
+export default function Post ({posts, updatePostsList}){
 
     const [descriptionInput, setDescriptionInput] = useState([]);
     const [newDescription, setNewDescription] = useState("");
@@ -20,6 +20,7 @@ export default function Post ({posts}){
     const [postId, setPostId] = useState('');
     const [disableInput, setDisableInput] = useState(false);
     const [modalIsOpen, setIsOpen] = useState(false);
+    const [deleting, setDeleting] = useState(false);
     const { token } = useContext(TokenContext)
     const { user } = useContext(UserContext)
 
@@ -107,11 +108,16 @@ export default function Post ({posts}){
     function deletePost(id){
         axios.delete(`${ApiURL}/posts/${postId}`, config)
             .then(res => {
+                setDeleting(false)
+                setIsOpen(false)
                 toast(res.data)
+                updatePostsList()
             })
             .catch(err => {
+                setDeleting(false)
+                setIsOpen(false)
                 console.log(err)
-                toast.error(err.message)
+                toast.error("Não foi possível excluir o post!")
             })
     }
     
@@ -125,8 +131,11 @@ export default function Post ({posts}){
             <div style={{ margin: '10px', fontWeight: '700', fontSize: '25px', textAlign: 'center' }}>Are you sure you want to delete this post?</div>
             <div style={{ width: '280px', display: 'flex', justifyContent: 'space-between'}}>
                 <button style={{ borderRadius: '10px', border: 'none', width: '100px', marginLeft: '10px', height: '40px',color: '#fff', backgroundColor: '#1777F2',  margin: '10px auto', fontSize: '14px'}}
-                onClick={() => deletePost(postId)}
-                >Yes, delete it</button>
+                onClick={() => {
+                    setDeleting(true)
+                    deletePost(postId)
+                }}
+                >{deleting ? 'Loading...' : 'Yes, delete it'}</button>
                 <button style={{ borderRadius: '10px', border: 'none', width: '100px', height: '40px', backgroundColor: '#fff', color: '#1777F2', margin: '10px auto', fontSize: '14px'}}
                 onClick={() => setIsOpen(false)}
                 >No, go back</button>

@@ -146,7 +146,9 @@ export default function Timeline() {
           </Button>
         </PublishContainer>
 
-        <Post posts={posts} />
+        
+        <Post posts={posts} updatePostsList={updatePostsList}/>
+
       </Container>
       <TrendingContainer>
         <div>trending</div>
