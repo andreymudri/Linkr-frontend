@@ -1,8 +1,4 @@
 import { Link } from "react-router-dom"
-import { UserImage, Username, UserPost, Description, 
-ContainerPreview, Container, ContainerImage, ContainerTexts,
-PreviewText, PreviewDescription, ContainerPhoto, Url, PostContainer,
-ContainerOptions, TrashIcon, EditIcon, Icons, DescriptionInput, Title } from "./style"
 import {
   UserImage,
   Username,
@@ -127,90 +123,6 @@ export default function Post({ posts, updatePostsList }) {
       setEditingIndex(index)
       setNewDescription(description)
     }
-    return (
-        <PostContainer>
-            <Modal
-                isOpen={modalIsOpen}
-                onRequestClose={() => setIsOpen(false)}
-                style={customStyles}
-            >
-            <div style={{ margin: '10px', fontWeight: '700', fontSize: '25px', textAlign: 'center' }}>Are you sure you want to delete this post?</div>
-            <div style={{ width: '280px', display: 'flex', justifyContent: 'space-between'}}>
-                <button style={{ borderRadius: '10px', border: 'none', width: '100px', marginLeft: '10px', height: '40px',color: '#fff', backgroundColor: '#1777F2',  margin: '10px auto', fontSize: '14px'}}
-                onClick={() => {
-                    setDeleting(true)
-                    deletePost(postId)
-                }}
-                >{deleting ? 'Loading...' : 'Yes, delete it'}</button>
-                <button style={{ borderRadius: '10px', border: 'none', width: '100px', height: '40px', backgroundColor: '#fff', color: '#1777F2', margin: '10px auto', fontSize: '14px'}}
-                onClick={() => setIsOpen(false)}
-                >No, go back</button>
-            </div>
-            </Modal>
-            <ToastContainer/>
-        {posts.length === 0 ? <Title>There are no posts yet</Title> : posts.map((p, index) => (
-            <UserPost key={index}  data-test="post" >
-                <ContainerImage>
-                    <UserImage src={p.image}/>
-                </ContainerImage>
-                <Container>
-                    <ContainerOptions>
-                        <Link to={`/user/${p.id}`}>
-                            <Username>{p.username}</Username>
-                        </Link>
-                        {p.userId === user.id ? (
-                            <Icons>
-                                <EditIcon onClick={() => {
-                                    setPostId(p.id);
-                                    if (descriptionInput[index] === true ) {
-                                        modificateDescription(index, p.description);
-                                    }
-                                    const newDescriptionInput = [...descriptionInput]
-                                    newDescriptionInput[index] = true
-                                    setDescriptionInput(newDescriptionInput)
-                                    setNewDescription(p.description)
-                                    }}/>
-                                <TrashIcon onClick={() => {
-                                    setPostId(p.id);
-                                    setIsOpen(true);
-                                }}/>
-                            </Icons>
-                        ) : (
-                           "" 
-                        )}   
-                    </ContainerOptions>
-                    {editingIndex === index ? (
-                    <DescriptionInput
-                        disabled={disableInput}
-                        ref={descriptionRef}
-                        value={newDescription}
-                        onChange={(e) =>{ 
-                            console.log(e.target.value)
-                            setNewDescription(e.target.value)}}
-                    />
-                    ) : (
-                    <Description>
-                        {p.description === null || p.description === '' ? (
-                        ''
-                        ) : (
-                        description === "" ? p.description : description
-                        )}
-                    </Description>
-                    )}
-                    <ContainerPreview>
-                        <ContainerTexts>
-                            <PreviewText>{p.titlePreview}</PreviewText>
-                            <PreviewDescription>
-                                {p.descriptionPreview}
-                            </PreviewDescription>
-                            <Link to={p.postUrl} target="_blank"><Url>{p.postUrl}</Url></Link>
-                        </ContainerTexts>
-                        <ContainerPhoto>
-                            <img src={p.imagePreview} alt="Preview post" />
-                        </ContainerPhoto>
-                    </ContainerPreview>
-                </Container>   
-=======
   }
 
   function deletePost(id) {
