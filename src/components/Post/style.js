@@ -145,11 +145,10 @@ width: 611px;
 height: 100%;
 position: relative;
 margin-top: 29px;
-margin-left: 241px;
+margin-left: 200px;
 background: #333333;
 @media (max-width: 768px) {
   width: 100vw;
-  left:0px;
-  top: 130px;
+  margin-left:0px;
 }
 `

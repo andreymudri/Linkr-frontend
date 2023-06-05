@@ -22,10 +22,13 @@ export const TrendingContainer = styled.div`
 position: absolute;
 width: 301px;
 height: 406px;
-left: 877px;
+left: 848px;
 top: 230px;
 background: #171717;
 border-radius: 16px;
+@media (max-width: 768px) {
+  display: none;
+}
 `
 
 export const Mobile = styled.div`
@@ -41,7 +44,7 @@ export const Mobile = styled.div`
 export const Title = styled.div`
 width: 145px;
 height: 64px;
-margin-left: 241px;
+margin-left: 200px;
 margin-top: 53px;
 font-family: 'Oswald';
 font-style: normal;
@@ -50,11 +53,7 @@ font-size: 43px;
 line-height: 64px;
 color: #FFFFFF;
 @media (max-width: 768px) {
-  position: absolute;
-  width: 111px;
-  height: 49px;
-  left: 17px;
-  top: 146px;
+  margin-left: 50px;
   font-size: 33px;
   line-height: 49px;
 }
@@ -64,15 +63,14 @@ export const PublishContainer = styled.form`
 position: relative;
 width: 611px;
 height: 209px;
-margin-left: 241px;
+margin-left: 200px;
 margin-top: 43px;
 background: #FFFFFF;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 border-radius: 16px;
 @media (max-width: 768px) {
   width: 100vw;
-  left:0px;
-  top: 100px;
+  margin-left: 0px;
 }
 `
 export const UserImage = styled(Image)`
