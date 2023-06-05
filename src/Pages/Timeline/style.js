@@ -19,11 +19,11 @@ export const PrincipalContainer = styled.div`
   height: 100%;
 `
 export const TrendingContainer = styled.div`
-position: fixed;
+position: absolute;
 width: 301px;
 height: 406px;
 left: 877px;
-top: 250px;
+top: 230px;
 background: #171717;
 border-radius: 16px;
 `
@@ -164,19 +164,6 @@ line-height: 17px;
 color: #FFFFFF;
 @media (max-width: 768px) {
   right: 10px;
-}
-`
-export const PostContainer = styled.div`
-width: 611px;
-height: 100%;
-position: relative;
-margin-top: 29px;
-margin-left: 241px;
-background: #333333;
-@media (max-width: 768px) {
-  width: 100vw;
-  left:0px;
-  top: 130px;
 }
 `
 
