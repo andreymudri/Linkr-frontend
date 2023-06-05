@@ -80,7 +80,7 @@ export default function Home() {
 
         <p
           onClick={() => {
-            navigate("/signup")
+            navigate("/sign-up")
           }}
           data-test="sign-up-link"
         >

@@ -36,7 +36,7 @@ function App() {
           <TokenContext.Provider value={{ token, setToken }}>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/signup" element={<Signup />} />
+              <Route path="/sign-up" element={<Signup />} />
               <Route path="/timeline" element={<Timeline />} />
               <Route path="/user/:id" element={<User />} />
               <Route path="/hashtag/:hashtag" element={<HashtagPage />} />

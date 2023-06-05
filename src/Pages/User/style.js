@@ -14,3 +14,20 @@ export const Mobile = styled.div`
     margin-top: 10px;
   }
 `;
+
+export const Title = styled.div`
+width: 145px;
+height: 64px;
+margin-top: 53px;
+font-family: 'Oswald';
+font-style: normal;
+font-weight: 700;
+font-size: 43px;
+line-height: 64px;
+color: #FFFFFF;
+@media (max-width: 768px) {
+  margin-left: 50px;
+  font-size: 33px;
+  line-height: 49px;
+}
+`;
