@@ -6,7 +6,6 @@ import {
   Container,
   Mobile,
   Title,
-  PostContainer,
   PrincipalContainer,
   TrendingContainer,
 } from "../Timeline/style.js"
@@ -50,9 +49,7 @@ export default function HashtagPage() {
           <Search />
         </Mobile>
         <Title>#{hashtagUrl}</Title>
-        <PostContainer>
-          <Post />
-        </PostContainer>
+        <Post posts={posts} />
       </Container>
       <TrendingContainer></TrendingContainer>
     </PrincipalContainer>
