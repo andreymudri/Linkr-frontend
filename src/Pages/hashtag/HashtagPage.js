@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import Header from "../../components/Header/index.js"
 import Post from "../../components/Post/index.js"
 import Search from "../../components/Search/index.js"
@@ -21,13 +21,16 @@ export default function HashtagPage() {
   const [trendingHashtags, setTrendingHashtags] = useState([])
   const { token } = useContext(TokenContext)
   const { user } = useContext(UserContext)
-
+  const navigate = useNavigate()
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   }
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
+    if (!token) {
+      navigate("/")
+    }
     postApi
       .getPostsByHashtag(hashtagUrl, config)
       .then((res) => {
