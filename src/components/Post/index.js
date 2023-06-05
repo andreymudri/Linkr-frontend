@@ -91,7 +91,7 @@ export default function Post ({posts, updatePostsList}){
                 })
                 .catch(err => {
                     setDisableInput(false);
-                    toast.error("The edit can't be saved! Try again later.")}
+                    toast.error("The edit can't be saved! Try again later.")})
         }
     }
 
