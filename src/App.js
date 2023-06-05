@@ -28,7 +28,7 @@ function App() {
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/timeline" element={<Timeline />} />
                 <Route path="/user/:id" element={<User />} />
-                <Route path="/hashtag/:hashtag" element={<HashtagPage />}
+                <Route path="/hashtag/:hashtag" element={<HashtagPage />} />
               </Routes>
             </BrowserRouter>
           </TokenContext.Provider>
