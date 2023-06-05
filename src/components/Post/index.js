@@ -144,7 +144,7 @@ export default function Post ({posts, updatePostsList}){
             </Modal>
             <ToastContainer/>
         {posts.length === 0 ? "There are no posts yet" : posts.map((p, index) => (
-            <UserPost key={index}>
+            <UserPost key={index}  data-test="post" >
                 <ContainerImage>
                     <UserImage src={p.image}/>
                 </ContainerImage>
