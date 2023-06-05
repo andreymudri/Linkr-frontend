@@ -6,6 +6,10 @@ export function getPostsByHashtag(hashtag, config) {
   return promise
 }
 
-const postApi = { getPostsByHashtag }
+export function getTrendingHashtags() {
+  const promise = axios.get(`${ApiURL}/hashtags`)
+  return promise
+}
+const postApi = { getPostsByHashtag, getTrendingHashtags }
 
 export default postApi

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import Header from "../../components/Header/index.js"
 import Post from "../../components/Post/index.js"
 import Search from "../../components/Search/index.js"
@@ -14,13 +14,12 @@ import { useContext, useEffect, useState } from "react"
 import TokenContext from "../../contexts/TokenContext.js"
 import UserContext from "../../contexts/UserContext.js"
 import postApi from "../../services/postsApi.js"
+import { HashtagLink } from "./style.js"
 
 export default function HashtagPage() {
   const { hashtag: hashtagUrl } = useParams()
-
-  //   const { token } = useContext(TokenContext)
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ3LCJpYXQiOjE2ODU5MTg4OTV9._iYrxQg89AlOIWASGMMlzBscMUalBoTSGOgsNoeWR_o"
+  const [trendingHashtags, setTrendingHashtags] = useState([])
+  const { token } = useContext(TokenContext)
   const { user } = useContext(UserContext)
 
   const config = {
@@ -38,7 +37,12 @@ export default function HashtagPage() {
       .catch((err) => {
         toast.error(err.response.data.message)
       })
-  }, [])
+
+    postApi
+      .getTrendingHashtags()
+      .then((res) => setTrendingHashtags(res.data))
+      .catch((err) => toast.error("Error on loading trending hashtags"))
+  }, [hashtagUrl])
 
   return (
     <PrincipalContainer>
@@ -51,7 +55,12 @@ export default function HashtagPage() {
         <Title>#{hashtagUrl}</Title>
         <Post posts={posts} />
       </Container>
-      <TrendingContainer></TrendingContainer>
+      <TrendingContainer>
+        <div>trending</div>
+        {trendingHashtags.map((h) => (
+          <HashtagLink to={`/hashtag/${h.name}`}># {h.name}</HashtagLink>
+        ))}
+      </TrendingContainer>
     </PrincipalContainer>
   )
 }
