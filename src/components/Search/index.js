@@ -1,25 +1,28 @@
-import searchApi from "../../services/searchApi";
-import { Container, ContainerSearch, SearchIcon, SearchUsers } from "./style";
-import { DebounceInput } from "react-debounce-input";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import searchApi from "../../services/searchApi"
+import { Container, ContainerSearch, SearchIcon, SearchUsers } from "./style"
+import { DebounceInput } from "react-debounce-input"
+import { useState } from "react"
+import { Link } from "react-router-dom"
 
 export default function Search({ token }) {
-  const [search, setSearch] = useState(null);
-  const [disabled, setDisabled] = useState(true);
+  const [search, setSearch] = useState(null)
+  const [disabled, setDisabled] = useState(true)
 
   const handleInputChange = (event) => {
     if (event.target.value === "") {
-      setDisabled(true);
+      setDisabled(true)
     } else {
-      setDisabled(false);
+      setDisabled(false)
     }
-    const searchValue = event.target.value;
+    const searchValue = event.target.value
     searchApi
       .getSearch(searchValue, token)
-      .then((res) => setSearch(res.data))
-      .catch((err) => console.log(err.response.data));
-  };
+      .then((res) => {
+        console.log(res.data)
+        setSearch(res.data)
+      })
+      .catch((err) => console.log(err.response.data))
+  }
 
   return (
     <Container disabled={disabled} data-test={"user-search"}>
@@ -42,5 +45,5 @@ export default function Search({ token }) {
           </Link>
         ))}
     </Container>
-  );
+  )
 }
