@@ -19,15 +19,7 @@ function App() {
   const lsToken = localStorage.getItem("token")
 
   const [user, setUser] = useState(lsUser ? lsUser : {})
-  const [token, setToken] = useState(lsToken ? lsToken : {})
-
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    if (!lsUser || !lsToken) {
-      navigate("/")
-    }
-  }, [])
+  const [token, setToken] = useState(lsToken ? lsToken : null)
 
   return (
     <div className="normalize-css">

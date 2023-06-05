@@ -78,13 +78,13 @@ export default function Signup() {
           />
           <>
             <input
-              placeholder="username"
+              placeholder="Username"
               type="username"
               onChange={(event) => setUsername(event.target.value)}
               data-test="username"
             />
             <input
-              placeholder="picture url"
+              placeholder="Picture url"
               type="picture"
               onChange={(event) => setImage(event.target.value)}
               data-test="picture-url"

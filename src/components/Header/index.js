@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Search from "../Search";
 import { Container, Icon, SubContainer, UserImage } from "./style";
 import TokenContext from "../../contexts/TokenContext";
@@ -11,15 +11,15 @@ export default function Header() {
 
   useEffect(() => {
     const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
+      setWindowWidth(window.innerWidth)
+    }
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResize)
 
     return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [])
 
   return (
     <Container>
@@ -30,5 +30,5 @@ export default function Header() {
         <UserImage src={user.image} />
       </SubContainer>
     </Container>
-  );
+  )
 }

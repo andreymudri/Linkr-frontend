@@ -23,6 +23,7 @@ import UserContext from "../../contexts/UserContext"
 import TokenContext from "../../contexts/TokenContext"
 import postApi from "../../services/postsApi.js"
 import { HashtagLink } from "../hashtag/style.js"
+import { useNavigate } from "react-router-dom"
 
 export default function Timeline() {
   const formInitialState = {
@@ -32,7 +33,7 @@ export default function Timeline() {
 
   const { token } = useContext(TokenContext)
   const { user } = useContext(UserContext)
-
+  const navigate = useNavigate()
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   }
@@ -41,6 +42,10 @@ export default function Timeline() {
   const [publishing, setPublishing] = useState(false)
   const [trendingHashtags, setTrendingHashtags] = useState([])
   useEffect(() => {
+    if (!token) {
+      navigate("/")
+    }
+
     axios
       .get(`${ApiURL}/posts`, config)
       .then((res) => {
@@ -64,7 +69,7 @@ export default function Timeline() {
       <PrincipalContainer>
         <ToastContainer />
         <Container>
-          <Header />
+          <Header token={token} />
           <Mobile>
             <Search token={token} />
           </Mobile>
@@ -146,9 +151,7 @@ export default function Timeline() {
           </Button>
         </PublishContainer>
 
-        
-        <Post posts={posts} updatePostsList={updatePostsList}/>
-
+        <Post posts={posts} updatePostsList={updatePostsList} />
       </Container>
       <TrendingContainer>
         <div>trending</div>
