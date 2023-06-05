@@ -1,13 +1,16 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import "normalize.css"
-import Home from "./Pages/Home/Home.js"
-import Timeline from "./Pages/Timeline/index.js"
-import User from "./Pages/User/index.js"
-import styled from "styled-components"
-import UserContext from "./contexts/UserContext.js"
-import { useState } from "react"
-import TokenContext from "./contexts/TokenContext.js"
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "normalize.css";
+import Home from "./Pages/Home/Home.js";
+import Timeline from "./Pages/Timeline/index.js";
+import User from "./Pages/User/index.js";
+import styled from "styled-components";
+import { useState } from "react";
+import TokenContext from "./contexts/TokenContext.js";
+import Signup from "./Pages/Signup/Signup.js";
+import UserContext from "./contexts/UserContext.js";
 import HashtagPage from "./Pages/hashtag/HashtagPage.js"
+
 
 const ApiURL = process.env.REACT_APP_API_URL
 
@@ -21,13 +24,11 @@ function App() {
           <TokenContext.Provider value={{ token, setToken }}>
             <BrowserRouter>
               <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Home />} />                                 
+                <Route path="/signup" element={<Signup />} />
                 <Route path="/timeline" element={<Timeline />} />
                 <Route path="/user/:id" element={<User />} />
-                <Route path="/hashtag/:hashtag" element={<HashtagPage />} />
-                {/*         <Route path="/signup" element={<Signup />} />
-            <Route path="/signin" element={<signin />} />
-*/}
+                <Route path="/hashtag/:hashtag" element={<HashtagPage />}
               </Routes>
             </BrowserRouter>
           </TokenContext.Provider>
