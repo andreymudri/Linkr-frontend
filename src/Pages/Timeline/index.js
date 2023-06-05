@@ -2,15 +2,15 @@ import Header from "../../components/Header";
 import Search from "../../components/Search";
 import Post from "../../components/Post";
 import { Container, Mobile, Title, UserImage, 
-PublishContainer, Text, Url, Description, Button, 
-PostContainer, PrincipalContainer, TrendingContainer } from "./style";
-import TokenContext from "../../contexts/TokenContext.js";
+PublishContainer, Text, Url, Description, Button, PrincipalContainer, TrendingContainer } from "./style";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { ApiURL } from "../../App";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import UserContext from "../../contexts/UserContext";
+import TokenContext from "../../contexts/TokenContext";
+
 export default function Timeline() {
 
   const formInitialState = {
@@ -20,11 +20,13 @@ export default function Timeline() {
   
   const { token } = useContext(TokenContext);
   const {user} = useContext(UserContext);
+  console.log(token)
+  console.log(user)
   
   const config = {
     headers: { Authorization: `Bearer ${token}` }
   };
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState(null);
   const [formData, setFormData] = useState(formInitialState);
   const [publishing, setPublishing] = useState(false);
 
@@ -35,9 +37,25 @@ export default function Timeline() {
         console.log(res.data)
       })
       .catch (err => {
-        toast.error(err.response.data.error)
+        toast.error("An error occured while trying to fetch the posts, please refresh the page")
       })
   }, [])
+
+
+  if (posts === null) {
+    return (
+      <PrincipalContainer>
+      <ToastContainer/>
+      <Container>
+        <Header />
+        <Mobile>
+          <Search token={token} />
+        </Mobile>
+        <Title>Loading...</Title>
+        </Container>
+    </PrincipalContainer>
+    )
+  }
 
   function updatePostsList(){
     axios.get(`${ApiURL}/posts`, config)
@@ -100,9 +118,9 @@ export default function Timeline() {
             {publishing ? "Publishing..." : "Publish"}
           </Button>
         </PublishContainer>
-        <PostContainer>
-          <Post/>
-        </PostContainer>
+        
+        <Post posts={posts}/>
+        
       </Container>
       <TrendingContainer>
       </TrendingContainer>

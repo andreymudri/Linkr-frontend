@@ -10,9 +10,11 @@ import TokenContext from "./contexts/TokenContext.js";
 import Signup from "./Pages/Signup/Signup.js";
 import UserContext from "./contexts/UserContext.js";
 import HashtagPage from "./Pages/hashtag/HashtagPage.js"
+import ReactModal from "react-modal";
 
 
 const ApiURL = process.env.REACT_APP_API_URL
+ReactModal.setAppElement('#root');
 
 function App() {
   const [user, setUser] = useState({})

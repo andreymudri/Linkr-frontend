@@ -1,5 +1,29 @@
 import styled from "styled-components";
 import {Image} from "../../components/UserImage/style";
+import {FaPencilAlt} from 'react-icons/fa'
+import {AiFillDelete} from 'react-icons/ai'
+
+export const ContainerOptions = styled.div`
+display:flex;
+justify-content:space-between;
+width: 502px;
+height: 23px;
+`
+export const Icons = styled.div`
+width: 50px;
+height: 23px;
+`
+export const TrashIcon = styled(AiFillDelete)`
+width: 20px;
+height: 20px;
+color: #FFFFFF;
+`
+export const EditIcon = styled(FaPencilAlt)`
+width: 16px;
+height: 16px;
+margin-right: 8px;
+color: #FFFFFF;
+`
 
 export const Container = styled.div`
 display:flex;
@@ -31,7 +55,7 @@ width: 50px;
 height: 50px;
 `
 export const Username = styled.div`
-width: 502px;
+width: 450px;
 height: 23px;
 font-family: 'Lato';
 font-style: normal;
@@ -50,6 +74,13 @@ font-size: 17px;
 line-height: 20px;
 color: #B7B7B7;
 `
+export const DescriptionInput = styled.input`
+width: 502px;
+height: 48px;
+background-color: #fff;
+border-radius: 5px;
+border: none;
+`
 export const ContainerPreview = styled.div`
 box-sizing: border-box;
 width: 503px;
@@ -66,7 +97,6 @@ display: flex;
 margin-left: 15px;
 margin-top: 15px;
 flex-direction: column;
-justify-content: space-between;
 `
 export const ContainerPhoto = styled.div`
 width: 153.44px;
@@ -87,16 +117,18 @@ font-weight: 400;
 font-size: 16px;
 line-height: 19px;
 color: #CECECE;
+margin-bottom:8px;
 `
 export const PreviewDescription = styled.div`
 width: 302.82px;
-height: 39px;
+height: 100%;
 font-family: 'Lato';
 font-style: normal;
 font-weight: 400;
 font-size: 11px;
 line-height: 13px;
 color: #9B9595;
+margin-bottom:8px;
 `
 export const Url = styled.div`
 width: 302.82px;
@@ -107,4 +139,17 @@ font-weight: 400;
 font-size: 11px;
 line-height: 13px;
 color: #9B9595;
+`
+export const PostContainer = styled.div`
+width: 611px;
+height: 100%;
+position: relative;
+margin-top: 29px;
+margin-left: 241px;
+background: #333333;
+@media (max-width: 768px) {
+  width: 100vw;
+  left:0px;
+  top: 130px;
+}
 `
