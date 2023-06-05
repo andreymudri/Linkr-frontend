@@ -11,6 +11,7 @@ import Modal from "react-modal";
 import TokenContext from "../../contexts/TokenContext"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 export default function Post ({posts, updatePostsList}){
 
     const [descriptionInput, setDescriptionInput] = useState([]);
@@ -149,7 +150,9 @@ export default function Post ({posts, updatePostsList}){
                 </ContainerImage>
                 <Container>
                     <ContainerOptions>
-                        <Username>{p.username}</Username>
+                        <Link to={`/user/${p.id}`}>
+                            <Username>{p.username}</Username>
+                        </Link>
                         {p.userId === user.id ? (
                             <Icons>
                                 <EditIcon onClick={() => {
