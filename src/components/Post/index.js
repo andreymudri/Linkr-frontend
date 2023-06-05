@@ -30,8 +30,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Post ({posts, updatePostsList}){
-
-
+  const [descriptionInput, setDescriptionInput] = useState([])
+  const [newDescription, setNewDescription] = useState("")
+  const [editingIndex, setEditingIndex] = useState(-1)
+  const [description, setDescription] = useState("")
+  const [postId, setPostId] = useState("")
+  const [disableInput, setDisableInput] = useState(false)
+  const [modalIsOpen, setIsOpen] = useState(false)
+  const [deleting, setDeleting] = useState(false)
   const { token } = useContext(TokenContext)
   const { user } = useContext(UserContext)
 
