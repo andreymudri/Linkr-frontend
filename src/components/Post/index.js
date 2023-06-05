@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { UserImage, Username, UserPost, Description, 
 ContainerPreview, Container, ContainerImage, ContainerTexts,
 PreviewText, PreviewDescription, ContainerPhoto, Url, PostContainer,
-ContainerOptions, TrashIcon, EditIcon, Icons, DescriptionInput } from "./style"
+ContainerOptions, TrashIcon, EditIcon, Icons, DescriptionInput, Title } from "./style"
 import axios from "axios"
 import { useContext, useEffect, useState, useRef} from "react"
 import { ApiURL } from "../../App"
@@ -143,7 +143,7 @@ export default function Post ({posts, updatePostsList}){
             </div>
             </Modal>
             <ToastContainer/>
-        {posts.length === 0 ? "There are no posts yet" : posts.map((p, index) => (
+        {posts.length === 0 ? <Title>There are no posts yet</Title> : posts.map((p, index) => (
             <UserPost key={index}  data-test="post" >
                 <ContainerImage>
                     <UserImage src={p.image}/>

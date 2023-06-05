@@ -6,6 +6,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  margin-top: 53px;
   h2 {
     margin-left: 17px;
     font-family: "Oswald";
