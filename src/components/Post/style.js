@@ -170,3 +170,19 @@ export const LikesContainer = styled.div`
     left: 14px;
   }
 `
+export const Title = styled.div`
+  width: 300px;
+  height: 64px;
+  margin-top: 53px;
+  font-family: "Oswald";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 64px;
+  color: #ffffff;
+  @media (max-width: 768px) {
+    margin-left: 50px;
+    font-size: 33px;
+    line-height: 49px;
+  }
+`
