@@ -7,6 +7,8 @@ import axios from "axios"
 import { useContext, useEffect, useState, useRef} from "react"
 import UserContext from "../../contexts/UserContext";
 import ReactModal from "react-modal";
+import { Link } from "react-router-dom";
+
 export default function Post ({posts}){
 
     const [metaDataList, setMetaDataList] = useState([]);
@@ -87,7 +89,9 @@ export default function Post ({posts}){
                 </ContainerImage>
                 <Container>
                     <ContainerOptions>
+                    <Link to={`/user/${s.id}`}>
                         <Username>{p.username}</Username>
+                        </Link>
                         {p.userId === user.id ? (
                             <Icons>
                                 <EditIcon onClick={() => {

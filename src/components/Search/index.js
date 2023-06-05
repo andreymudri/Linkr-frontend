@@ -37,7 +37,7 @@ export default function Search({ token }) {
           <Link to={`/user/${s.id}`}>
             <SearchUsers key={s.id} disabled={disabled}>
               <img src={s.image} alt={s.username} />
-              <h3>{s.username}aaa</h3>
+              <h3>{s.username}</h3>
             </SearchUsers>
           </Link>
         ))}

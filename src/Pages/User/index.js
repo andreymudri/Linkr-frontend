@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import UserHeardline from "../../components/UserHeardline";
 import TokenContext from "../../contexts/TokenContext.js";
+import Post from "../../components/Post";
 
 export default function User() {
   const [user, setUser] = useState(null);
@@ -28,6 +29,7 @@ export default function User() {
         <Search data-test={"user-search"} token={token} />
       </Mobile>
       <UserHeardline user={user} />
+      <Post />
     </Container>
   );
 }
