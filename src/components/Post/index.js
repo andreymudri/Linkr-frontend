@@ -30,13 +30,13 @@ import "react-toastify/dist/ReactToastify.css"
 import Likes from "../Likes.js"
 export default function Post({ posts, updatePostsList }) {
   const [descriptionInput, setDescriptionInput] = useState([])
-  const [newDescription, setNewDescription] = useState("")
   const [editingIndex, setEditingIndex] = useState(-1)
-  const [description, setDescription] = useState("")
+  const [newDescription, setNewDescription] = useState("")
   const [postId, setPostId] = useState("")
   const [disableInput, setDisableInput] = useState(false)
   const [modalIsOpen, setIsOpen] = useState(false)
   const [deleting, setDeleting] = useState(false)
+  const postIdRef = useRef("")
 
   const { token } = useContext(TokenContext)
   const { user } = useContext(UserContext)
@@ -92,25 +92,28 @@ export default function Post({ posts, updatePostsList }) {
   function handleKeyDown(event) {
     if (event.key === "Escape") {
       setEditingIndex(-1)
-      setNewDescription("")
     }
     if (event.key === "Enter") {
       setDisableInput(true)
+      const postId = postIdRef.current
+      console.log("valor de e.target.value:" + event.target.value)
+      console.log("valor de postId:" + postId)
+      console.log(typeof(postId))
       axios
         .put(
           `${ApiURL}/posts/${postId}`,
-          { description: newDescription },
+          { description: event.target.value },
           config
         )
         .then((res) => {
           console.log(res.data)
           setDisableInput(false)
-          setDescription(newDescription)
           setEditingIndex(-1)
+          updatePostsList();
         })
         .catch((err) => {
           setDisableInput(false)
-          console.log(err)
+          console.log(err.response.data)
         })
     }
   }
@@ -127,7 +130,7 @@ export default function Post({ posts, updatePostsList }) {
 
   function deletePost(id) {
     axios
-      .delete(`${ApiURL}/posts/${postId}`, config)
+      .delete(`${ApiURL}/posts/${id}`, config)
       .then((res) => {
         setDeleting(false)
         setIsOpen(false)
@@ -140,6 +143,11 @@ export default function Post({ posts, updatePostsList }) {
         console.log(err)
         toast.error("Não foi possível excluir o post!")
       })
+  }
+
+  function changePostId(postId) {
+    postIdRef.current = postId;
+    setPostId(postId);
   }
 
   return (
@@ -217,7 +225,8 @@ export default function Post({ posts, updatePostsList }) {
                     <Icons>
                       <EditIcon
                         onClick={() => {
-                          setPostId(p.id)
+                          console.log("Valor de p.id:" + p.id)
+                          changePostId(p.id)
                           if (descriptionInput[index] === true) {
                             modificateDescription(index, p.description)
                           }
@@ -225,6 +234,10 @@ export default function Post({ posts, updatePostsList }) {
                           newDescriptionInput[index] = true
                           setDescriptionInput(newDescriptionInput)
                           setNewDescription(p.description)
+
+                          // const newDisableInput = [...disableInputRef.current];
+                          // newDisableInput[index] = true;
+                          // disableInputRef.current = newDisableInput;
                         }}
                       />
                       <TrashIcon
@@ -252,9 +265,8 @@ export default function Post({ posts, updatePostsList }) {
                   <Description>
                     {p.description === null || p.description === ""
                       ? ""
-                      : description === ""
-                      ? p.description
-                      : description}
+                      : 
+                      p.description}
                   </Description>
                 )}
                 <ContainerPreview>

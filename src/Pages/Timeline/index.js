@@ -41,6 +41,7 @@ export default function Timeline() {
   const [formData, setFormData] = useState(formInitialState)
   const [publishing, setPublishing] = useState(false)
   const [trendingHashtags, setTrendingHashtags] = useState([])
+
   useEffect(() => {
     if (!token) {
       navigate("/")
@@ -155,8 +156,8 @@ export default function Timeline() {
       </Container>
       <TrendingContainer>
         <div>trending</div>
-        {trendingHashtags.map((h) => (
-          <HashtagLink to={`/hashtag/${h.name}`}># {h.name}</HashtagLink>
+        {trendingHashtags.map((h, index) => (
+          <HashtagLink key={index} to={`/hashtag/${h.name}`}># {h.name}</HashtagLink>
         ))}
       </TrendingContainer>
     </PrincipalContainer>
