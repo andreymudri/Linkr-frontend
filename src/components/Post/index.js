@@ -18,6 +18,8 @@ import {
   EditIcon,
   Icons,
   DescriptionInput,
+  Comments,
+  CommentIcon
 } from "./style"
 import axios from "axios"
 import { useContext, useEffect, useState, useRef } from "react"
@@ -28,6 +30,7 @@ import TokenContext from "../../contexts/TokenContext"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import Likes from "../Likes.js"
+
 export default function Post({ posts, updatePostsList }) {
   const [descriptionInput, setDescriptionInput] = useState([])
   const [editingIndex, setEditingIndex] = useState(-1)
@@ -217,6 +220,17 @@ export default function Post({ posts, updatePostsList }) {
             <UserPost key={index}>
               <ContainerImage>
                 <UserImage src={p.image} />
+                <Likes
+                  likers={p.likers}
+                  likesCount={p.likesCount}
+                  user={user}
+                  postId={p.id}
+                  configAuth={config}
+                />
+                <Comments>
+                  <CommentIcon />
+                  <p>0 comments</p>
+                </Comments>
               </ContainerImage>
               <Container>
                 <ContainerOptions>
@@ -234,10 +248,6 @@ export default function Post({ posts, updatePostsList }) {
                           newDescriptionInput[index] = true
                           setDescriptionInput(newDescriptionInput)
                           setNewDescription(p.description)
-
-                          // const newDisableInput = [...disableInputRef.current];
-                          // newDisableInput[index] = true;
-                          // disableInputRef.current = newDisableInput;
                         }}
                       />
                       <TrashIcon
@@ -284,13 +294,6 @@ export default function Post({ posts, updatePostsList }) {
                   </ContainerPhoto>
                 </ContainerPreview>
               </Container>
-              <Likes
-                likers={p.likers}
-                likesCount={p.likesCount}
-                user={user}
-                postId={p.id}
-                configAuth={config}
-              />
             </UserPost>
           ))}
     </PostContainer>
