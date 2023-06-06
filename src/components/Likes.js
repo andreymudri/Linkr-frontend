@@ -11,13 +11,13 @@ export default function Likes({
   const { id } = user
 
   return (
-    <LikesContainer>
+    <LikesContainer data-test="like-btn">
       {likers && likers.some((l) => l.id === id) ? (
         <AiFillHeart size="2em" color="red" />
       ) : (
         <AiOutlineHeart size="2em" color="white" />
       )}
-      <p>{likesCount} likes</p>
+      <p data-test="counter">{likesCount} likes</p>
     </LikesContainer>
   )
 }
