@@ -59,10 +59,12 @@ export default function User() {
       </Mobile>
       <UserHeardline user={user && user.user} />
       <Post posts={user && user.posts} />
-      <TrendingContainer>
+      <TrendingContainer data-test="trending">
         <div>trending</div>
         {trendingHashtags.map((h) => (
-          <HashtagLink to={`/hashtag/${h.name}`}># {h.name}</HashtagLink>
+          <HashtagLink data-test="hashtag" key={h.id} to={`/hashtag/${h.name}`}>
+            # {h.name}
+          </HashtagLink>
         ))}
       </TrendingContainer>
     </Container>
