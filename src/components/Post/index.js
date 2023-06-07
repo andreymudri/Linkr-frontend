@@ -117,7 +117,7 @@ export default function Post({ posts, updatePostsList }) {
         })
         .catch((err) => {
           setDisableInput(false);
-          console.log(err.response.data);
+          alert(err.response.data);
         });
     }
   }

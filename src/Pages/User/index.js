@@ -1,6 +1,13 @@
 import Header from "../../components/Header";
 import Search from "../../components/Search";
-import { Container, Mobile, Title, TrendingContainer } from "./style";
+import {
+  Container,
+  Mobile,
+  Title,
+  TrendingContainer,
+  UserAndFollow,
+  PostContainer,
+} from "./style";
 import userApi from "../../services/userAPI";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -12,6 +19,7 @@ import "react-toastify/dist/ReactToastify.css";
 import postApi from "../../services/postsApi.js";
 import { HashtagLink } from "../hashtag/style.js";
 import { useNavigate } from "react-router-dom";
+import Follow from "../../components/Follow";
 
 export default function User() {
   const [user, setUser] = useState(null);
@@ -57,8 +65,13 @@ export default function User() {
       <Mobile>
         <Search token={token} />
       </Mobile>
-      <UserHeardline user={user && user.user} />
-      <Post posts={user && user.posts} />
+      <UserAndFollow>
+        <UserHeardline user={user && user.user} />
+        <Follow />
+      </UserAndFollow>
+      <PostContainer>
+        <Post posts={user && user.posts} />
+      </PostContainer>
       <TrendingContainer data-test="trending">
         <div>trending</div>
         {trendingHashtags.map((h) => (
