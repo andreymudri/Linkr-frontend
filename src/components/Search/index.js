@@ -24,7 +24,6 @@ export default function Search({ token }) {
   };
 
   function Page(id) {
-    console.log(id);
     const currentUserId = location.pathname.split("/")[2];
     if (currentUserId !== id) {
       navigate(`/user/${id}`);

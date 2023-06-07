@@ -1,5 +1,8 @@
 import Header from "../../components/Header";
 import Search from "../../components/Search";
+import UserHeardline from "../../components/UserHeardline";
+import Follow from "../../components/Follow";
+import Post from "../../components/Post";
 import {
   Container,
   Mobile,
@@ -9,22 +12,21 @@ import {
   PostContainer,
 } from "./style";
 import userApi from "../../services/userAPI";
-import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import UserHeardline from "../../components/UserHeardline";
+import postApi from "../../services/postsApi.js";
 import TokenContext from "../../contexts/TokenContext.js";
-import Post from "../../components/Post";
+import UserContext from "../../contexts/UserContext";
+import { useContext, useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { HashtagLink } from "../hashtag/style.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import postApi from "../../services/postsApi.js";
-import { HashtagLink } from "../hashtag/style.js";
-import { useNavigate } from "react-router-dom";
-import Follow from "../../components/Follow";
 
 export default function User() {
-  const [user, setUser] = useState(null);
+  const [userById, setUserById] = useState(null);
   const { id } = useParams();
   const { token } = useContext(TokenContext);
+  const { user } = useContext(UserContext);
+
   const [trendingHashtags, setTrendingHashtags] = useState([]);
   const navigate = useNavigate();
 
@@ -35,7 +37,7 @@ export default function User() {
 
     userApi
       .getUserById(id, token)
-      .then((res) => setUser(res.data))
+      .then((res) => setUserById(res.data))
       .catch((err) => toast.error(err.response.data));
 
     postApi
@@ -45,7 +47,8 @@ export default function User() {
   }
   // eslint-disable-next-line
   useEffect(getUser, []);
-  if (user === null) {
+
+  if (userById === null) {
     return (
       <Container>
         <ToastContainer />
@@ -66,11 +69,11 @@ export default function User() {
         <Search token={token} />
       </Mobile>
       <UserAndFollow>
-        <UserHeardline user={user && user.user} />
-        <Follow />
+        <UserHeardline user={userById && userById.user} />
+        {id == user.id ? "" : <Follow id={id} />}
       </UserAndFollow>
       <PostContainer>
-        <Post posts={user && user.posts} />
+        <Post posts={userById && userById.posts} />
       </PostContainer>
       <TrendingContainer data-test="trending">
         <div>trending</div>
