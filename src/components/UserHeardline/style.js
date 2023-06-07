@@ -6,7 +6,6 @@ export const Container = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-top: 53px;
   h2 {
     margin-left: 17px;
     font-family: "Oswald";
@@ -17,7 +16,6 @@ export const Container = styled.div`
     color: #ffffff;
   }
   img {
-    margin-left: 17px;
     width: 50px;
     height: 50px;
     border-radius: 26.5px;

@@ -18,13 +18,14 @@ export const Mobile = styled.div`
 export const Title = styled.div`
   width: 145px;
   height: 64px;
-  margin-top: 53px;
+  margin-top: 100px;
   font-family: "Oswald";
   font-style: normal;
   font-weight: 700;
   font-size: 43px;
   line-height: 64px;
   color: #ffffff;
+  margin-left: -650px;
   @media (max-width: 768px) {
     margin-left: 50px;
     font-size: 33px;
@@ -37,7 +38,7 @@ export const TrendingContainer = styled.div`
   width: 301px;
   height: 60vh;
   left: 877px;
-  top: 230px;
+  top: 287px;
   background: #171717;
   border-radius: 16px;
   display: flex;
@@ -59,4 +60,18 @@ export const TrendingContainer = styled.div`
   @media (max-width: 768px) {
     display: none;
   }
+`;
+
+export const UserAndFollow = styled.div`
+  max-width: 757px;
+  width: 100%;
+  margin-top: 53px;
+  margin-bottom: 53px;
+  display: flex;
+  align-items: center;
+`;
+
+export const PostContainer = styled.div`
+  margin-top: -55px;
+  margin-right: 400px;
 `;
