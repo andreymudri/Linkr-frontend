@@ -11,9 +11,21 @@ export function getTrendingHashtags() {
   return promise
 }
 
+export function postLike(id, userId) {
+  const promise = axios.post(`${ApiURL}/like/${id}`, { userId: userId })
+  return promise
+}
+
+export function postDislike(id, userId) {
+  const promise = axios.post(`${ApiURL}/dislike/${id}`, { userId })
+  return promise
+}
+
 const postApi = {
   getPostsByHashtag,
   getTrendingHashtags,
+  postLike,
+  postDislike,
 }
 
 export default postApi
