@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 import {
   UserImage,
   Username,
@@ -21,35 +21,35 @@ import {
   Comments,
   CommentIcon,
   NoPost,
-} from "./style";
-import axios from "axios";
-import { useContext, useEffect, useState, useRef } from "react";
-import { ApiURL } from "../../App";
-import UserContext from "../../contexts/UserContext";
-import Modal from "react-modal";
-import TokenContext from "../../contexts/TokenContext";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Likes from "../Likes.js";
+} from "./style"
+import axios from "axios"
+import { useContext, useEffect, useState, useRef } from "react"
+import { ApiURL } from "../../App"
+import UserContext from "../../contexts/UserContext"
+import Modal from "react-modal"
+import TokenContext from "../../contexts/TokenContext"
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+import Likes from "../Likes.js"
 
 export default function Post({ posts, updatePostsList }) {
-  const [descriptionInput, setDescriptionInput] = useState([]);
-  const [editingIndex, setEditingIndex] = useState(-1);
-  const [newDescription, setNewDescription] = useState("");
-  const [postId, setPostId] = useState("");
-  const [disableInput, setDisableInput] = useState(false);
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const [deleting, setDeleting] = useState(false);
-  const postIdRef = useRef("");
+  const [descriptionInput, setDescriptionInput] = useState([])
+  const [editingIndex, setEditingIndex] = useState(-1)
+  const [newDescription, setNewDescription] = useState("")
+  const [postId, setPostId] = useState("")
+  const [disableInput, setDisableInput] = useState(false)
+  const [modalIsOpen, setIsOpen] = useState(false)
+  const [deleting, setDeleting] = useState(false)
+  const postIdRef = useRef("")
 
-  const { token } = useContext(TokenContext);
-  const { user } = useContext(UserContext);
+  const { token } = useContext(TokenContext)
+  const { user } = useContext(UserContext)
 
   const config = {
     headers: { Authorization: `Bearer ${token}` },
-  };
+  }
 
-  const descriptionRef = useRef(null);
+  const descriptionRef = useRef(null)
 
   const customStyles = {
     content: {
@@ -72,37 +72,37 @@ export default function Post({ posts, updatePostsList }) {
       backgroundColor: "#333333",
       boxSizing: "border-box",
     },
-  };
+  }
 
   useEffect(() => {
     posts.forEach((p) => {
-      setDescriptionInput([...descriptionInput, false]);
-    });
-  }, [posts]);
+      setDescriptionInput([...descriptionInput, false])
+    })
+  }, [posts])
 
   useEffect(() => {
     if (editingIndex !== -1 && descriptionRef.current) {
-      descriptionRef.current.focus();
+      descriptionRef.current.focus()
     }
-  }, [editingIndex]);
+  }, [editingIndex])
 
   useEffect(() => {
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown)
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
+      window.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [])
 
   function handleKeyDown(event) {
     if (event.key === "Escape") {
-      setEditingIndex(-1);
+      setEditingIndex(-1)
     }
     if (event.key === "Enter") {
-      setDisableInput(true);
-      const postId = postIdRef.current;
-      console.log("valor de e.target.value:" + event.target.value);
-      console.log("valor de postId:" + postId);
-      console.log(typeof postId);
+      setDisableInput(true)
+      const postId = postIdRef.current
+      console.log("valor de e.target.value:" + event.target.value)
+      console.log("valor de postId:" + postId)
+      console.log(typeof postId)
       axios
         .put(
           `${ApiURL}/posts/${postId}`,
@@ -110,25 +110,25 @@ export default function Post({ posts, updatePostsList }) {
           config
         )
         .then((res) => {
-          console.log(res.data);
-          setDisableInput(false);
-          setEditingIndex(-1);
-          updatePostsList();
+          console.log(res.data)
+          setDisableInput(false)
+          setEditingIndex(-1)
+          updatePostsList()
         })
         .catch((err) => {
-          setDisableInput(false);
-          alert(err.response.data);
-        });
+          setDisableInput(false)
+          alert(err.response.data)
+        })
     }
   }
 
   function modificateDescription(index, description) {
     if (editingIndex === index) {
-      setEditingIndex(-1);
-      setNewDescription("");
+      setEditingIndex(-1)
+      setNewDescription("")
     } else {
-      setEditingIndex(index);
-      setNewDescription(description);
+      setEditingIndex(index)
+      setNewDescription(description)
     }
   }
 
@@ -136,22 +136,22 @@ export default function Post({ posts, updatePostsList }) {
     axios
       .delete(`${ApiURL}/posts/${id}`, config)
       .then((res) => {
-        setDeleting(false);
-        setIsOpen(false);
-        toast(res.data);
-        updatePostsList();
+        setDeleting(false)
+        setIsOpen(false)
+        toast(res.data)
+        updatePostsList()
       })
       .catch((err) => {
-        setDeleting(false);
-        setIsOpen(false);
-        console.log(err);
-        toast.error("Não foi possível excluir o post!");
-      });
+        setDeleting(false)
+        setIsOpen(false)
+        console.log(err)
+        toast.error("Não foi possível excluir o post!")
+      })
   }
 
   function changePostId(postId) {
-    postIdRef.current = postId;
-    setPostId(postId);
+    postIdRef.current = postId
+    setPostId(postId)
   }
 
   return (
@@ -191,8 +191,8 @@ export default function Post({ posts, updatePostsList }) {
               fontSize: "14px",
             }}
             onClick={() => {
-              setDeleting(true);
-              deletePost(postId);
+              setDeleting(true)
+              deletePost(postId)
             }}
           >
             {deleting ? "Loading..." : "Yes, delete it"}
@@ -227,7 +227,7 @@ export default function Post({ posts, updatePostsList }) {
                 likesCount={p.likesCount}
                 user={user}
                 postId={p.id}
-                configAuth={config}
+                updatePostsList={updatePostsList}
               />
               <Comments>
                 <CommentIcon />
@@ -242,22 +242,22 @@ export default function Post({ posts, updatePostsList }) {
                     <EditIcon
                       data-test="edit-btn"
                       onClick={() => {
-                        console.log("Valor de p.id:" + p.id);
-                        changePostId(p.id);
+                        console.log("Valor de p.id:" + p.id)
+                        changePostId(p.id)
                         if (descriptionInput[index] === true) {
-                          modificateDescription(index, p.description);
+                          modificateDescription(index, p.description)
                         }
-                        const newDescriptionInput = [...descriptionInput];
-                        newDescriptionInput[index] = true;
-                        setDescriptionInput(newDescriptionInput);
-                        setNewDescription(p.description);
+                        const newDescriptionInput = [...descriptionInput]
+                        newDescriptionInput[index] = true
+                        setDescriptionInput(newDescriptionInput)
+                        setNewDescription(p.description)
                       }}
                     />
                     <TrashIcon
                       data-test="delete-btn"
                       onClick={() => {
-                        setPostId(p.id);
-                        setIsOpen(true);
+                        setPostId(p.id)
+                        setIsOpen(true)
                       }}
                     />
                   </Icons>
@@ -272,8 +272,8 @@ export default function Post({ posts, updatePostsList }) {
                   ref={descriptionRef}
                   value={newDescription}
                   onChange={(e) => {
-                    console.log(e.target.value);
-                    setNewDescription(e.target.value);
+                    console.log(e.target.value)
+                    setNewDescription(e.target.value)
                   }}
                 />
               ) : (
@@ -302,5 +302,5 @@ export default function Post({ posts, updatePostsList }) {
         ))
       )}
     </PostContainer>
-  );
+  )
 }
