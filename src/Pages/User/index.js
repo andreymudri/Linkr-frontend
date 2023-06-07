@@ -26,6 +26,7 @@ export default function User() {
   const { id } = useParams();
   const { token } = useContext(TokenContext);
   const { user } = useContext(UserContext);
+  const [follow, setFollow] = useState(false);
 
   const [trendingHashtags, setTrendingHashtags] = useState([]);
   const navigate = useNavigate();
@@ -37,7 +38,10 @@ export default function User() {
 
     userApi
       .getUserById(id, token)
-      .then((res) => setUserById(res.data))
+      .then((res) => {
+        setUserById(res.data);
+        setFollow(false);
+      })
       .catch((err) => toast.error(err.response.data));
 
     postApi
@@ -72,7 +76,11 @@ export default function User() {
         <UserHeardline user={userById && userById.user} />
         {
           // eslint-disable-next-line
-          id == user.id ? "" : <Follow id={id} />
+          id == user.id ? (
+            ""
+          ) : (
+            <Follow id={id} follow={follow} setFollow={setFollow} />
+          )
         }
       </UserAndFollow>
       <PostContainer>

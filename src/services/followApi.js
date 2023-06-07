@@ -1,37 +1,27 @@
 import axios from "axios";
 
-function createConfig(token) {
-  return {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-}
-
-function getFollowButton(id, userId, token) {
-  const promise = axios.get(
-    `${process.env.REACT_APP_API_URL}/follow`,
-    { id: id, userId: userId },
-    createConfig(token)
-  );
+function getFollowButton(id, userId) {
+  const promise = axios.post(`${process.env.REACT_APP_API_URL}/follow/get`, {
+    id: id,
+    userId: userId,
+  });
   return promise;
 }
 
-function postFollowButton(id, userId, token) {
-  const promise = axios.post(
-    `${process.env.REACT_APP_API_URL}/follow`,
-    { id: id, userId: userId },
-    createConfig(token)
-  );
+function postFollowButton(id, userId) {
+  const promise = axios.post(`${process.env.REACT_APP_API_URL}/follow/post`, {
+    id: id,
+    userId: userId,
+  });
+  console.log(promise);
   return promise;
 }
 
-function deleteFollowButton(id, userId, token) {
-  const promise = axios.delete(
-    `${process.env.REACT_APP_API_URL}/follow`,
-    { id: id, userId: userId },
-    createConfig(token)
-  );
+function deleteFollowButton(id, userId) {
+  const promise = axios.delete(`${process.env.REACT_APP_API_URL}/follow/delete`, {
+    id: id,
+    userId: userId,
+  });
   return promise;
 }
 

@@ -11,5 +11,5 @@ export const ButtonContainer = styled.button`
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
-  color: ${(props) => (props.Follow ? "#1877f2" : "#ffffff")};
+  color: ${(props) => (props.follow ? "#1877f2" : "#ffffff")};
 `;
