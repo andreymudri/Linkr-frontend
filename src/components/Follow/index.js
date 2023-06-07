@@ -17,7 +17,21 @@ export default function Follow({ id }) {
     followApi
       .postFollowButton(id, user.id, token)
       .then((res) => {
-        setFollow(res.data);
+        getFollow();
+        setDisabled(false);
+      })
+      .catch((err) => {
+        toast.error("Could not perform the operation");
+        setDisabled(false);
+      });
+  }
+
+  function deleteFollow() {
+    setDisabled(true);
+    followApi
+      .deleteFollowButton(id, user.id, token)
+      .then((res) => {
+        getFollow();
         setDisabled(false);
       })
       .catch((err) => {
@@ -42,7 +56,7 @@ export default function Follow({ id }) {
         data-test="follow-btn"
         disabled={disabled}
         follow={follow}
-        onClick={() => postFollow()}
+        onClick={follow ? deleteFollow : postFollow}
       >
         {follow ? "Unfollow" : "Follow"}
       </ButtonContainer>

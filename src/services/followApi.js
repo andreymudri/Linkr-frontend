@@ -11,7 +11,7 @@ function createConfig(token) {
 function getFollowButton(id, userId, token) {
   const promise = axios.get(
     `${process.env.REACT_APP_API_URL}/follow`,
-    { id, userId },
+    { id: id, userId: userId },
     createConfig(token)
   );
   return promise;
@@ -20,12 +20,21 @@ function getFollowButton(id, userId, token) {
 function postFollowButton(id, userId, token) {
   const promise = axios.post(
     `${process.env.REACT_APP_API_URL}/follow`,
-    { id, userId },
+    { id: id, userId: userId },
     createConfig(token)
   );
   return promise;
 }
 
-const followApi = { getFollowButton, postFollowButton };
+function deleteFollowButton(id, userId, token) {
+  const promise = axios.delete(
+    `${process.env.REACT_APP_API_URL}/follow`,
+    { id: id, userId: userId },
+    createConfig(token)
+  );
+  return promise;
+}
+
+const followApi = { getFollowButton, postFollowButton, deleteFollowButton };
 
 export default followApi;
