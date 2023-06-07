@@ -70,7 +70,10 @@ export default function User() {
       </Mobile>
       <UserAndFollow>
         <UserHeardline user={userById && userById.user} />
-        {id == user.id ? "" : <Follow id={id} />}
+        {
+          // eslint-disable-next-line
+          id == user.id ? "" : <Follow id={id} />
+        }
       </UserAndFollow>
       <PostContainer>
         <Post posts={userById && userById.posts} />

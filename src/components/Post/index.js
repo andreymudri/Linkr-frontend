@@ -221,7 +221,9 @@ export default function Post({ posts, updatePostsList }) {
         posts.map((p, index) => (
           <UserPost data-test="post" key={index}>
             <ContainerImage>
-              <UserImage src={p.image} />
+              <Link to={`/user/${p.userId}`}>
+                <UserImage src={p.image} />
+              </Link>
               <Likes
                 likers={p.likers}
                 likesCount={p.likesCount}
@@ -236,7 +238,9 @@ export default function Post({ posts, updatePostsList }) {
             </ContainerImage>
             <Container>
               <ContainerOptions>
-                <Username data-test="username">{p.username}</Username>
+                <Link to={`/user/${p.userId}`}>
+                  <Username data-test="username">{p.username}</Username>
+                </Link>
                 {p.userId === user.id ? (
                   <Icons>
                     <EditIcon
