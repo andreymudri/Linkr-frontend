@@ -18,10 +18,15 @@ function postFollowButton(id, userId) {
 }
 
 function deleteFollowButton(id, userId) {
-  const promise = axios.delete(`${process.env.REACT_APP_API_URL}/follow/delete`, {
-    id: id,
-    userId: userId,
-  });
+  const promise = axios.delete(
+    `${process.env.REACT_APP_API_URL}/follow/delete`,
+    {
+      data: {
+        id: id,
+        userId: userId,
+      },
+    }
+  );
   return promise;
 }
 

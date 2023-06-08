@@ -28,7 +28,6 @@ export default function Follow({ id, follow, setFollow }) {
     followApi
       .deleteFollowButton(id, user.id)
       .then((res) => {
-        console.log("delete");
         getFollow();
         setDisabled(false);
       })
@@ -42,8 +41,7 @@ export default function Follow({ id, follow, setFollow }) {
     followApi
       .getFollowButton(id, user.id)
       .then((res) => {
-        setFollow(res.data ? true : false);
-        console.log(res.data);
+        setFollow(res.data.length != 0 ? true : false);
       })
       .catch((err) => toast.error("Could not perform the operation"));
   }
