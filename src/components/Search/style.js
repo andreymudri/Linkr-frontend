@@ -52,6 +52,15 @@ export const SearchUsers = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  h4 {
+    margin-left: 7px;
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 23px;
+    color: #c5c5c5;
+  }
   h3 {
     margin-left: 17px;
     font-family: "Lato";
