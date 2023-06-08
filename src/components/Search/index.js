@@ -16,7 +16,7 @@ export default function Search({ token }) {
   const location = useLocation();
   const { user } = useContext(UserContext);
 
-  const handleInputChange = (event) => {
+  function handleInputChange(event) {
     if (event.target.value === "") {
       setDisabled(true);
     } else {
@@ -27,9 +27,9 @@ export default function Search({ token }) {
       .getSearch(searchValue, token)
       .then((res) => setSearch(res.data))
       .catch((err) => console.log(err.response.data));
-  };
+  }
 
-  const getFollow = async (id) => {
+  async function getFollow(id) {
     try {
       const res = await followApi.getFollowButton(id, user.id);
       return res.data.length !== 0;
@@ -37,17 +37,21 @@ export default function Search({ token }) {
       toast.error("Could not perform the operation");
       return false;
     }
-  };
+  }
 
   useEffect(() => {
     if (search) {
-      search.forEach(async (s) => {
-        const followStatus = await getFollow(s.id);
-        setFollowStatusMap((prevState) => ({
-          ...prevState,
-          [s.id]: followStatus,
-        }));
-      });
+      async function fetchData() {
+        const followStatuses = await Promise.all(
+          search.map((s) => getFollow(s.id))
+        );
+        const followStatusMap = search.reduce((map, s, index) => {
+          map[s.id] = followStatuses[index];
+          return map;
+        }, {});
+        setFollowStatusMap(followStatusMap);
+      }
+      fetchData();
     }
     // eslint-disable-next-line
   }, [search]);
@@ -59,6 +63,18 @@ export default function Search({ token }) {
     }
     window.location.reload();
   }
+
+  const sortedSearch = search?.sort((a, b) => {
+    const followStatusA = followStatusMap[a.id];
+    const followStatusB = followStatusMap[b.id];
+    if (followStatusA && !followStatusB) {
+      return -1;
+    }
+    if (!followStatusA && followStatusB) {
+      return 1;
+    }
+    return 0;
+  });
 
   return (
     <Container disabled={disabled}>
@@ -73,8 +89,8 @@ export default function Search({ token }) {
         />
         <SearchIcon />
       </ContainerSearch>
-      {search &&
-        search.map((s) => (
+      {sortedSearch &&
+        sortedSearch.map((s) => (
           <SearchUsers
             key={s.id}
             disabled={disabled}
