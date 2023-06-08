@@ -41,6 +41,7 @@ export default function Follow({ id, follow, setFollow }) {
     followApi
       .getFollowButton(id, user.id)
       .then((res) => {
+        // eslint-disable-next-line
         setFollow(res.data.length != 0 ? true : false);
       })
       .catch((err) => toast.error("Could not perform the operation"));
