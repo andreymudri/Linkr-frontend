@@ -10,20 +10,19 @@ export const Container = styled.div`
   ::-webkit-scrollbar {
     width: 0px;
   }
-  p {
-    margin: 20px 0 0 300px;
-    font-family: "Oswald";
-    font-style: normal;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 64px;
-    color: #ffffff;
-    @media (max-width: 768px) {
-      margin: 30px auto 0 auto;
-    }
+`
+export const MessageNoPost = styled.p`
+  margin: 20px 0 0 300px;
+  font-family: "Oswald";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 64px;
+  color: #ffffff;
+  @media (max-width: 768px) {
+    margin: 30px auto 0 auto;
   }
 `
-
 export const PrincipalContainer = styled.div`
   display: flex;
   width: 100%;
