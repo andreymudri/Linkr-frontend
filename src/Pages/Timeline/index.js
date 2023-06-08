@@ -13,6 +13,7 @@ import {
   Button,
   PrincipalContainer,
   TrendingContainer,
+  MessageNoPost,
 } from "./style"
 import { useContext, useEffect, useState } from "react"
 import axios from "axios"
@@ -158,7 +159,7 @@ export default function Timeline() {
             {publishing ? "Publishing..." : "Publish"}
           </Button>
         </PublishContainer>
-        <p>{messageNotPosts}</p>
+        <MessageNoPost>{messageNotPosts}</MessageNoPost>
         {posts === null ? (
           ""
         ) : (
