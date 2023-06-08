@@ -13,7 +13,6 @@ function postFollowButton(id, userId) {
     id: id,
     userId: userId,
   });
-  console.log(promise);
   return promise;
 }
 

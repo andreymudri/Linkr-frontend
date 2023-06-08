@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { Image } from "../../components/UserImage/style";
-import { FaPencilAlt } from "react-icons/fa";
-import { AiFillDelete } from "react-icons/ai";
-import { AiOutlineComment } from "react-icons/ai";
+import styled from "styled-components"
+import { Image } from "../../components/UserImage/style"
+import { FaPencilAlt } from "react-icons/fa"
+import { AiFillDelete } from "react-icons/ai"
+import { AiOutlineComment } from "react-icons/ai"
 
 
 export const ContainerOptions = styled.div`
@@ -14,7 +14,7 @@ export const ContainerOptions = styled.div`
   @media (max-width: 768px) {
     width: 90%;
   }
-`;
+`
 export const Icons = styled.div`
   width: 50px;
   height: 23px;
@@ -22,18 +22,18 @@ export const Icons = styled.div`
   @media (max-width: 768px) {
     width: 30%;
   }
-`;
+`
 export const TrashIcon = styled(AiFillDelete)`
   width: 20px;
   height: 20px;
   color: #ffffff;
-`;
+`
 export const EditIcon = styled(FaPencilAlt)`
   width: 16px;
   height: 16px;
   margin-right: 8px;
   color: #ffffff;
-`;
+`
 
 export const Container = styled.div`
   display: flex;
@@ -44,7 +44,7 @@ export const Container = styled.div`
   @media (max-width: 768px) {
     width: 80%;
   }
-`;
+`
 export const ContainerImage = styled.div`
   width: 50px;
   height: 230px;
@@ -56,7 +56,7 @@ export const ContainerImage = styled.div`
     width: 10%;
     height: 95%;
   }
-`;
+`
 export const UserPost = styled.div`
   width: 611px;
   height: 276px;
@@ -69,11 +69,11 @@ export const UserPost = styled.div`
   @media (max-width: 768px) {
     width: 100vw;
   }
-`;
+`
 export const UserImage = styled(Image)`
   width: 50px;
   height: 50px;
-`;
+`
 export const Username = styled.div`
   width: 450px;
   height: 23px;
@@ -88,6 +88,7 @@ export const Username = styled.div`
     width: 100%;
   }
 `;
+
 export const Description = styled.div`
   width: 502px;
   height: 52px;
@@ -101,6 +102,8 @@ export const Description = styled.div`
     width: 90%;
   }
 `;
+
+
 export const DescriptionInput = styled.input`
   width: 502px;
   height: 48px;
@@ -111,9 +114,6 @@ export const DescriptionInput = styled.input`
     width: 90%;
   }
 `;
-
-
-
 
 export const PostContainer = styled.div`
   width: 611px;
@@ -126,7 +126,7 @@ export const PostContainer = styled.div`
     width: 100vw;
     margin-left: 0px;
   }
-`;
+`
 export const LikesContainer = styled.div`
   width: 50px;
   height: 60px;
@@ -151,12 +151,12 @@ export const ContainerComments = styled.div`
     color: white;
     font-size: 10px;
   }
-`;
+`
 export const CommentIcon = styled(AiOutlineComment)`
   width: 20px;
   height: 20px;
   color: #ffffff;
-`;
+`
 export const NoPost = styled.div`
   width: 611px;
   height: 36px;
@@ -171,4 +171,4 @@ export const NoPost = styled.div`
     font-size: 33px;
     line-height: 49px;
   }
-`;
+`
