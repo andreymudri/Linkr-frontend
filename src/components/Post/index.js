@@ -4,21 +4,15 @@ import {
   Username,
   UserPost,
   Description,
-  ContainerPreview,
   Container,
   ContainerImage,
-  ContainerTexts,
-  PreviewText,
-  PreviewDescription,
-  ContainerPhoto,
-  Url,
   PostContainer,
   ContainerOptions,
   TrashIcon,
   EditIcon,
   Icons,
   DescriptionInput,
-  Comments,
+  ContainerComments,
   CommentIcon,
   NoPost,
 } from "./style"
@@ -31,6 +25,9 @@ import TokenContext from "../../contexts/TokenContext"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import Likes from "../Likes.js"
+import PostsPreview from "../PostsPreview"
+import Comments from "../Comments"
+import { CommentsContainer, ContainerMakeComment, IconComment, MakeComment } from "../Comments/style"
 
 export default function Post({ posts, updatePostsList }) {
   const [descriptionInput, setDescriptionInput] = useState([])
@@ -41,6 +38,7 @@ export default function Post({ posts, updatePostsList }) {
   const [modalIsOpen, setIsOpen] = useState(false)
   const [deleting, setDeleting] = useState(false)
   const postIdRef = useRef("")
+  const openComments = useRef(false)
 
   const { token } = useContext(TokenContext)
   const { user } = useContext(UserContext)
@@ -219,6 +217,7 @@ export default function Post({ posts, updatePostsList }) {
         <NoPost data-test="message">There are no posts yet</NoPost>
       ) : (
         posts.map((p, index) => (
+          <>
           <UserPost data-test="post" key={index}>
             <ContainerImage>
               <Link to={`/user/${p.userId}`}>
@@ -231,10 +230,12 @@ export default function Post({ posts, updatePostsList }) {
                 postId={p.id}
                 updatePostsList={updatePostsList}
               />
-              <Comments>
+              <ContainerComments onClick={() => {
+                  openComments.current = !openComments.current
+                }}>
                 <CommentIcon />
                 <p>0 comments</p>
-              </Comments>
+              </ContainerComments>
             </ContainerImage>
             <Container>
               <ContainerOptions>
@@ -287,22 +288,21 @@ export default function Post({ posts, updatePostsList }) {
                     : p.description}
                 </Description>
               )}
-              <ContainerPreview>
-                <ContainerTexts>
-                  <PreviewText>{p.titlePreview}</PreviewText>
-                  <PreviewDescription>
-                    {p.descriptionPreview}
-                  </PreviewDescription>
-                  <Link data-test="link" to={p.postUrl} target="_blank">
-                    <Url>{p.postUrl}</Url>
-                  </Link>
-                </ContainerTexts>
-                <ContainerPhoto>
-                  <img src={p.imagePreview} alt="Preview post" />
-                </ContainerPhoto>
-              </ContainerPreview>
+              <PostsPreview titlePreview={p.titlePreview} 
+              descriptionPreview={p.descriptionPreview} postUrl={p.postUrl} 
+              imagePreview={p.imagePreview}
+              />
             </Container>
           </UserPost>
+          <CommentsContainer openComments={openComments}>
+            <Comments />
+            <ContainerMakeComment>
+                <UserImage src={user.image} />
+                <MakeComment placeholder="Write a comment..."/>
+                <IconComment/>
+            </ContainerMakeComment>
+          </CommentsContainer>
+          </>
         ))
       )}
     </PostContainer>
