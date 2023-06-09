@@ -1,6 +1,8 @@
 import Header from "../../components/Header"
 import Search from "../../components/Search"
 import Post from "../../components/Post"
+import useInterval from "use-interval"
+import { BiRefresh } from "react-icons/bi"
 import {
   Container,
   Mobile,
@@ -14,6 +16,7 @@ import {
   PrincipalContainer,
   TrendingContainer,
   MessageNoPost,
+  RefreshButton,
 } from "./style"
 import { useContext, useEffect, useState } from "react"
 import axios from "axios"
@@ -43,6 +46,8 @@ export default function Timeline() {
   const [publishing, setPublishing] = useState(false)
   const [trendingHashtags, setTrendingHashtags] = useState([])
   const [messageNotPosts, setMessageNotPosts] = useState("")
+  const [newPostsCount, setNewPostsCount] = useState(0)
+  const [lastId, setLastId] = useState(1)
   useEffect(() => {
     if (!token) {
       navigate("/")
@@ -51,6 +56,7 @@ export default function Timeline() {
     axios
       .get(`${ApiURL}/posts`, config)
       .then((res) => {
+        setLastId(res.data[0].id)
         setPosts(res.data)
         console.log(res.data)
       })
@@ -70,6 +76,30 @@ export default function Timeline() {
       .then((res) => setTrendingHashtags(res.data))
       .catch((err) => toast.error("Error on loading trending hashtags"))
   }, [])
+
+  useInterval(() => {
+    if (posts && posts.length === 0) {
+      axios
+        .get(`${ApiURL}/posts`, config)
+        .then((res) => {
+          setNewPostsCount(res.data.length)
+        })
+        .catch((err) => {
+          console.log("Nenhum post novo :b")
+        })
+    }
+
+    if (posts && posts.length > 0) {
+      postApi
+        .verifyNewPosts(lastId, config)
+        .then((res) => {
+          setNewPostsCount(res.data.newPostsCount)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+  }, 15 * 1000)
 
   if (posts === null && messageNotPosts === "") {
     return (
@@ -159,6 +189,14 @@ export default function Timeline() {
             {publishing ? "Publishing..." : "Publish"}
           </Button>
         </PublishContainer>
+        {newPostsCount === 0 ? (
+          ""
+        ) : (
+          <RefreshButton>
+            {`${newPostsCount} new posts,load more`}
+            <BiRefresh size="2em" />
+          </RefreshButton>
+        )}
         <MessageNoPost>{messageNotPosts}</MessageNoPost>
         {posts === null ? (
           ""

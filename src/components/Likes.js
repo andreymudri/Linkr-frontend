@@ -2,6 +2,7 @@ import { Tooltip } from "react-tooltip"
 import postApi from "../services/postsApi.js"
 import { LikesContainer } from "./Post/style.js"
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai"
+import { useEffect, useState } from "react"
 
 export default function Likes({
   likers,
@@ -11,12 +12,23 @@ export default function Likes({
   updatePostsList,
 }) {
   const { id } = user
-  function randomNameNotYou(i) {
+  const [name1, setName1] = useState("")
+  const [name2, setName2] = useState("")
+  function randomNameNotYou() {
     if (likers) {
       const result = likers.filter((l) => l.id !== id)
-      return result[i].name
+      if (result.length === 1) {
+        setName1(result[0].name)
+      }
+      if (result.length > 1) {
+        setName1(result[0].name)
+        setName2(result[1].name)
+      }
     }
   }
+  useEffect(() => {
+    randomNameNotYou()
+  }, [])
   function likePost() {
     postApi
       .postLike(postId, id)
@@ -48,10 +60,10 @@ export default function Likes({
             data-tooltip-id="likers"
             data-tooltip-content={
               likers.length === 2
-                ? `Você e ${randomNameNotYou(0)} curtiram esse post`
+                ? `Você e ${name1} curtiram esse post`
                 : likers.length === 1
                 ? `Você curtiu esse post`
-                : `Você,${randomNameNotYou(0)} e outras ${
+                : `Você,${name1} e outras ${
                     Number(likesCount) - 2
                   } pessoas curtiram esse post`
             }
@@ -69,12 +81,10 @@ export default function Likes({
               !likers
                 ? `0 likes`
                 : likers.length === 2
-                ? `${randomNameNotYou(0)}, ${randomNameNotYou(
-                    1
-                  )} curtiram esse post`
+                ? `${name1}, ${name2} curtiram esse post`
                 : likers.length === 1
-                ? `${randomNameNotYou(0)} curtiu esse post`
-                : `${randomNameNotYou(0)}, ${randomNameNotYou(1)} e outras ${
+                ? `${name1} curtiu esse post`
+                : `${name1}, ${name2} e outras ${
                     Number(likesCount) - 2
                   } pessoas curtiram esse post`
             }

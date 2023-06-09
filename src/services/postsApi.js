@@ -21,11 +21,16 @@ export function postDislike(id, userId) {
   return promise
 }
 
+export function verifyNewPosts(id, config) {
+  const promise = axios.get(`${ApiURL}/posts/newPosts/${id}`, config)
+  return promise
+}
 const postApi = {
   getPostsByHashtag,
   getTrendingHashtags,
   postLike,
   postDislike,
+  verifyNewPosts,
 }
 
 export default postApi
