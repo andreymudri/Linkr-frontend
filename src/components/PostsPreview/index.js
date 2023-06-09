@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 export default function PostsPreview({titlePreview, descriptionPreview, postUrl, imagePreview}) {
     return (
         
-        <ContainerPreview>
+        <ContainerPreview data-test="link">
             <ContainerTexts>
                 <PreviewText>{titlePreview}</PreviewText>
                 <PreviewDescription>
