@@ -4,9 +4,10 @@ import { FaPencilAlt } from "react-icons/fa"
 import { AiFillDelete } from "react-icons/ai"
 import { AiOutlineComment } from "react-icons/ai"
 import { FcRefresh } from 'react-icons/fc';
+
 export const Loader = styled.div`
 width:226px;
-height:100px;
+height:100%;
 display:flex;
 flex-direction:column;
 align-items:center;
@@ -220,7 +221,7 @@ export const NoPost = styled.div`
 
   border-radius: 16px;
   background-color:#1E1E1E;
-  height: 276px;
+  height: 100%;
   margin-bottom:50px;
   display:flex;
   flex-direction:column;
