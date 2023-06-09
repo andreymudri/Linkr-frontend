@@ -37,9 +37,11 @@ export default function Post({ posts, updatePostsList }) {
   const [disableInput, setDisableInput] = useState(false)
   const [modalIsOpen, setIsOpen] = useState(false)
   const [deleting, setDeleting] = useState(false)
-  const [comment, setComment] = useState("")
+  const [commentInput, setCommentInput] = useState("")
+  const comment = useRef("")
   const postIdRef = useRef("")
   const openComments = useRef([])
+
 
   const { token } = useContext(TokenContext)
   const { user } = useContext(UserContext)
@@ -103,11 +105,11 @@ export default function Post({ posts, updatePostsList }) {
       setEditingIndex(-1)
     }
     if (event.key === "Enter") {
+      if (newDescription === "") {
+        return
+      }
       setDisableInput(true)
       const postId = postIdRef.current
-      console.log("valor de e.target.value:" + event.target.value)
-      console.log("valor de postId:" + postId)
-      console.log(typeof postId)
       axios
         .put(
           `${ApiURL}/posts/${postId}`,
@@ -157,6 +159,19 @@ export default function Post({ posts, updatePostsList }) {
   function changePostId(postId) {
     postIdRef.current = postId
     setPostId(postId)
+  }
+
+  function handleComment (postId, comment){
+    axios.post(`${ApiURL}/posts/${postId}/comment`, { comment }, config)
+      .then((res) => {
+        console.log(res.data)
+        setCommentInput("")
+        updatePostsList()
+      })
+      .catch((err) => {
+        console.log(err)
+        toast.error("Comment failed. Try again later!", {autoClose: 1500})
+      })
   }
 
   return (
@@ -239,8 +254,9 @@ export default function Post({ posts, updatePostsList }) {
               />
               <ContainerComments onClick={() => {
                   openComments.current[index] = !openComments.current[index]
+                  postIdRef.current = p.id
                   updatePostsList();
-                }}>
+                }} >
                 <CommentIcon />
                 <p>{p.commentsCount} comments</p>
               </ContainerComments>
@@ -307,11 +323,15 @@ export default function Post({ posts, updatePostsList }) {
             <ContainerMakeComment>
                 <UserImage src={user.image} />
                 <MakeComment
-                value={comment}
-                onChange={e => setComment(e.target.value)} 
+                value={commentInput}
+                onChange={e => setCommentInput(e.target.value)}
                 placeholder="Write a comment..."
                 />
-                <IconComment/>
+                <IconComment onClick={() => {
+                  postIdRef.current = p.id
+                  comment.current = commentInput
+                  handleComment(postIdRef.current, comment.current)
+                }}/>
             </ContainerMakeComment>
           </CommentsContainer>
           </>
