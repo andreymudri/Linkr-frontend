@@ -3,7 +3,7 @@ import { Image } from "../../components/UserImage/style"
 import { FaPencilAlt } from "react-icons/fa"
 import { AiFillDelete } from "react-icons/ai"
 import { AiOutlineComment } from "react-icons/ai"
-
+import { FcRefresh } from 'react-icons/fc';
 export const Loader = styled.div`
 width:226px;
 height:100px;
@@ -215,3 +215,29 @@ export const NoPost = styled.div`
     line-height: 49px;
   }
 `
+
+  export const RepostContainer = styled.div`
+
+  border-radius: 16px;
+  background-color:#1E1E1E;
+  height: 276px;
+  margin-bottom:50px;
+  display:flex;
+  flex-direction:column;
+  h1{
+    display:flex;
+    margin-left:15px;
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 23px;
+  color: #FFFFFF;
+  align-items:center;
+  }
+  `
+  export const RepostIcon = styled(FcRefresh)`
+    width:  17px;
+    height: 17px;
+    color: #ffffff;
+  `
