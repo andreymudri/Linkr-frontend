@@ -12,6 +12,7 @@ export const ContainerPreview = styled.div`
   // background-color: orange;
   @media (max-width: 768px) {
     width: 100%;
+    height: 80%;
   }
 `
 export const ContainerTexts = styled.div`
@@ -26,6 +27,8 @@ export const ContainerTexts = styled.div`
   // background: gray;
   @media (max-width: 768px) {
     width: 60%;
+    height: 90%;
+    margin-top: 5px;
   }
 `
 export const ContainerPhoto = styled.div`
@@ -41,6 +44,7 @@ export const ContainerPhoto = styled.div`
   }
   @media (max-width: 768px) {
     width: 50%;
+    height: 100%;
     img {
       width: 100%;
       height: 100%;
@@ -59,7 +63,9 @@ export const PreviewText = styled.div`
   margin-bottom: 8px;
   // background: red;
   @media (max-width: 768px) {
+    font-size: 12px;
     width: 90%;
+    height: 10%;
   }
 `
 export const PreviewDescription = styled.div`
@@ -73,7 +79,9 @@ export const PreviewDescription = styled.div`
   color: #9b9595;
   margin-bottom: 8px;
   @media (max-width: 768px) {
+    font-size: 10px;
     width: 90%;
+    height: 80%;
   }
 `
 export const Url = styled.div`
@@ -87,7 +95,7 @@ export const Url = styled.div`
   color: #9b9595;
   // background: pink;
   @media (max-width: 768px) {
-    width: 95%;
-    height: 50px;
+    width: 90%;
+    height: 10%;
   }
 `

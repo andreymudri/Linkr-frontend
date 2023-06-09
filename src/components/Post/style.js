@@ -12,27 +12,37 @@ export const ContainerOptions = styled.div`
   height: 23px;
   // background: yellow;
   @media (max-width: 768px) {
-    width: 90%;
+    width: 100%;
   }
 `
 export const Icons = styled.div`
   width: 50px;
   height: 23px;
   // background:blue;
+  display: flex;
   @media (max-width: 768px) {
-    width: 30%;
+    width: 12%;
   }
 `
 export const TrashIcon = styled(AiFillDelete)`
   width: 20px;
   height: 20px;
   color: #ffffff;
+  @media (max-width: 768px) {
+    width: 50%;
+    height: 100%;
+  }
 `
 export const EditIcon = styled(FaPencilAlt)`
   width: 16px;
   height: 16px;
   margin-right: 8px;
   color: #ffffff;
+  @media (max-width: 768px) {
+    width: 50%;
+    height: 80%;
+    margin-top: 7%;
+  }
 `
 
 export const Container = styled.div`
@@ -102,6 +112,7 @@ export const Description = styled.div`
   color: #b7b7b7;
   @media (max-width: 768px) {
     width: 90%;
+    font-size: 15px;
   }
 `;
 
