@@ -19,14 +19,14 @@ export const Mobile = styled.div`
 export const Title = styled.div`
   width: 145px;
   height: 64px;
-  margin-top: 100px;
+  margin-top: 65px;
+  margin-left: -600px;
   font-family: "Oswald";
   font-style: normal;
   font-weight: 700;
   font-size: 43px;
   line-height: 64px;
   color: #ffffff;
-  margin-left: -650px;
   @media (max-width: 768px) {
     margin-left: 50px;
     font-size: 33px;
@@ -38,7 +38,7 @@ export const TrendingContainer = styled.div`
   margin-top: -45px;
   margin-left: 25px;
   width: 301px;
-  height: auto;
+  height: 100%;
   padding: 20px;
   background: #171717;
   border-radius: 16px;
@@ -66,6 +66,7 @@ export const TrendingContainer = styled.div`
 export const UserAndFollow = styled.div`
   max-width: 757px;
   width: 100%;
+  margin-top: 30px;
   margin-bottom: 53px;
   display: flex;
   align-items: center;

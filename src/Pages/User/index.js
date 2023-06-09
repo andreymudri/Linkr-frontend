@@ -40,7 +40,9 @@ export default function User() {
     userApi
       .getUserById(id, token)
       .then((res) => {
-        setUserById(res.data);
+        const user = res.data;
+        setUserById(user);
+        user.posts.reverse();
         setFollow(false);
       })
       .catch((err) => toast.error(err.response.data));
@@ -74,6 +76,7 @@ export default function User() {
       .then((res) => {
         const postUpdated = res.data;
         setUserById(postUpdated);
+        postUpdated.posts.reverse();
       })
       .catch((err) => {
         toast.error(err.response.data.error);
