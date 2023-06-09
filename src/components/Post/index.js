@@ -199,6 +199,7 @@ export default function Post({ posts, updatePostsList }) {
           }}
         >
           <button
+            data-test="confirm"
             style={{
               borderRadius: "10px",
               border: "none",
@@ -218,6 +219,7 @@ export default function Post({ posts, updatePostsList }) {
             {deleting ? "Loading..." : "Yes, delete it"}
           </button>
           <button
+            data-test="cancel"
             style={{
               borderRadius: "10px",
               border: "none",
@@ -257,8 +259,8 @@ export default function Post({ posts, updatePostsList }) {
                   postIdRef.current = p.id
                   updatePostsList();
                 }} >
-                <CommentIcon />
-                <p>{p.commentsCount} comments</p>
+                <CommentIcon data-test="comment-btn"/>
+                <p data-test="comment-counter">{p.commentsCount} comments</p>
               </ContainerComments>
             </ContainerImage>
             <Container>
@@ -296,7 +298,7 @@ export default function Post({ posts, updatePostsList }) {
               </ContainerOptions>
               {editingIndex === index ? (
                 <DescriptionInput
-                  data-test="description"
+                  data-test="edit-input"
                   disabled={disableInput}
                   ref={descriptionRef}
                   value={newDescription}
@@ -306,7 +308,7 @@ export default function Post({ posts, updatePostsList }) {
                   }}
                 />
               ) : (
-                <Description data-test="edit-input">
+                <Description data-test="description">
                   {p.description === null || p.description === ""
                     ? ""
                     : p.description}
