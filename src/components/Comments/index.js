@@ -18,7 +18,7 @@ export default function Comments({comments}){
                 <CommentTexts>
                     <CommentUserName>
                         <h1>{c.commentedUser}</h1>
-                        <p>• following</p>
+                        <p>{c.followPostOwner ? "• following" : (c.postOwner ? "• post's author" : "")}</p>
                     </CommentUserName>
                     <Comment>
                         {c.comment}
