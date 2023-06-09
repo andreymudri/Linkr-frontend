@@ -13,6 +13,7 @@ export const Container = styled.div`
   width: 100vw;
   height: 72px;
   h2 {
+    cursor: pointer;
     font-family: "Passion One";
     font-style: normal;
     font-weight: 700;

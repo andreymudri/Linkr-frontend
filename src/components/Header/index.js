@@ -3,6 +3,7 @@ import Search from "../Search";
 import { Container, Icon, SubContainer, UserImage, Mobile } from "./style";
 import TokenContext from "../../contexts/TokenContext";
 import UserContext from "../../contexts/UserContext";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const { token } = useContext(TokenContext);
@@ -10,7 +11,9 @@ export default function Header() {
 
   return (
     <Container>
-      <h2>linkr</h2>
+      <Link to={`/timeline`}>
+        <h2>linkr</h2>
+      </Link>
       <Mobile>
         <Search token={token} />
       </Mobile>

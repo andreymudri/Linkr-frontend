@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  margin-top: 53px;
+  margin-top: 55px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -38,7 +38,7 @@ export const TrendingContainer = styled.div`
   margin-top: -45px;
   margin-left: 25px;
   width: 301px;
-  height: auto;
+  height: 50vh;
   background: #171717;
   border-radius: 16px;
   display: flex;
