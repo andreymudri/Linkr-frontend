@@ -40,6 +40,7 @@ export default function User() {
     userApi
       .getUserById(id, token)
       .then((res) => {
+        console.log(res.data)
         setUserById(res.data);
         setFollow(false);
       })
@@ -47,7 +48,10 @@ export default function User() {
 
     postApi
       .getTrendingHashtags()
-      .then((res) => setTrendingHashtags(res.data))
+      .then((res) => {
+        console.log(res.data)
+        setTrendingHashtags(res.data)
+      })
       .catch((err) => toast.error("Error on loading trending hashtags"));
   }
   // eslint-disable-next-line

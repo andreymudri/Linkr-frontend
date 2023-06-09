@@ -23,6 +23,7 @@ height: 68px;
 width: 590px;
 display: flex;
 border-bottom: 1px solid #353535;
+margin-bottom: 10px;
 // background:blue;
 `
 export const CommentTexts = styled.div`
@@ -69,8 +70,9 @@ color: #ACACAC;
 `
 export const ContainerMakeComment = styled.div`
 display: flex;
-position:relative;
-padding:10px;
+position: sticky;
+  bottom: 0;
+padding: 10px;
 justify-content: space-between;
 // background:pink;
 `
