@@ -19,6 +19,6 @@ export const Container = styled.div`
     width: 50px;
     height: 50px;
     border-radius: 26.5px;
-    background-color: #ffffff;
+    object-fit: cover;
   }
 `;

@@ -162,7 +162,7 @@ export default function Timeline() {
           <Search token={token} />
         </Mobile>
         <Title>timeline</Title>
-        <PublishContainer onSubmit={handleForm} data-test="publish-box">
+        <PublishContainer data-test="publish-box" onSubmit={handleForm} >
           <UserImage src={user.image} />
           <Text>What are you going to share today?</Text>
           <Url
@@ -185,19 +185,20 @@ export default function Timeline() {
               setFormData({ ...formData, description: e.target.value })
             }
           />
-          <Button disabled={publishing} data-test="publish-btn">
+          <Button data-test="publish-btn" disabled={publishing} >
             {publishing ? "Publishing..." : "Publish"}
           </Button>
         </PublishContainer>
         {newPostsCount === 0 ? (
           ""
         ) : (
-          <RefreshButton>
+          <RefreshButton data-test="load-btn">
             {`${newPostsCount} new posts,load more`}
             <BiRefresh size="2em" />
           </RefreshButton>
         )}
-        <MessageNoPost>{messageNotPosts}</MessageNoPost>
+        <MessageNoPost data-test="message">{messageNotPosts}</MessageNoPost>
+
         {posts === null ? (
           ""
         ) : (
