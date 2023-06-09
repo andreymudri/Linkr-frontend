@@ -192,3 +192,27 @@ export const Button = styled.button`
     right: 10px;
   }
 `
+export const RefreshButton = styled.button`
+  background-color: #1877f2;
+  width: 611px;
+  height: 8vh;
+  margin-left: 200px;
+  margin-top: 23px;
+  margin-bottom: -30px;
+  border: thin solid #1877f2;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: "Lato";
+  padding: 10px;
+  :hover {
+    background-color: #1812f2;
+    border: thin solid #1812f2;
+  }
+  @media (max-width: 768px) {
+    width: 100vw;
+    margin-left: 0px;
+  }
+`
