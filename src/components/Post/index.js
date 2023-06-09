@@ -40,6 +40,8 @@ export default function Post({ posts, updatePostsList }) {
   const [commentInput, setCommentInput] = useState("")
   const comment = useRef("")
   const postIdRef = useRef("")
+  const descriptionRef = useRef(null)
+  const newDescriptionRef = useRef(null)
   const openComments = useRef([])
 
 
@@ -49,8 +51,6 @@ export default function Post({ posts, updatePostsList }) {
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   }
-
-  const descriptionRef = useRef(null)
 
   const customStyles = {
     content: {
@@ -105,7 +105,8 @@ export default function Post({ posts, updatePostsList }) {
       setEditingIndex(-1)
     }
     if (event.key === "Enter") {
-      if (newDescription === "") {
+      console.log(newDescription)
+      if (newDescriptionRef.current === null) {
         return
       }
       setDisableInput(true)
@@ -305,6 +306,7 @@ export default function Post({ posts, updatePostsList }) {
                   onChange={(e) => {
                     console.log(e.target.value)
                     setNewDescription(e.target.value)
+                    newDescriptionRef.current = e.target.value
                   }}
                 />
               ) : (
