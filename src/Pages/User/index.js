@@ -40,7 +40,6 @@ export default function User() {
     userApi
       .getUserById(id, token)
       .then((res) => {
-        console.log(res.data)
         setUserById(res.data);
         setFollow(false);
       })
@@ -49,8 +48,7 @@ export default function User() {
     postApi
       .getTrendingHashtags()
       .then((res) => {
-        console.log(res.data)
-        setTrendingHashtags(res.data)
+        setTrendingHashtags(res.data);
       })
       .catch((err) => toast.error("Error on loading trending hashtags"));
   }
@@ -68,6 +66,18 @@ export default function User() {
         <Title>Loading...</Title>
       </Container>
     );
+  }
+
+  function updatePostsList() {
+    userApi
+      .getUserById(id, token)
+      .then((res) => {
+        const postUpdated = res.data;
+        setUserById(postUpdated);
+      })
+      .catch((err) => {
+        toast.error(err.response.data.error);
+      });
   }
 
   return (
@@ -90,7 +100,10 @@ export default function User() {
       </UserAndFollow>
       <ContainerPostTrend>
         <PostContainer>
-          <Post posts={userById && userById.posts} />
+          <Post
+            posts={userById && userById.posts}
+            updatePostsList={updatePostsList}
+          />
         </PostContainer>
         <TrendingContainer data-test="trending">
           <div>trending</div>
