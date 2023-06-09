@@ -79,6 +79,7 @@ export const SearchUsers = styled.div`
     width: 39px;
     height: 39px;
     border-radius: 304px;
+    object-fit: cover;
   }
   ${(props) =>
     props.disabled &&
