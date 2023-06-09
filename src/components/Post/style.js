@@ -4,7 +4,36 @@ import { FaPencilAlt } from "react-icons/fa"
 import { AiFillDelete } from "react-icons/ai"
 import { AiOutlineComment } from "react-icons/ai"
 
+export const Loader = styled.div`
+width:226px;
+height:100px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+background: #333333;
+margin:0 auto;
+img{
+  width:36px;
+  height:36px;
+}
+p{
+  width: 226px;
+  height: 26px;
+  left: 428px;
+  top: 660px;
 
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 26px;
+  letter-spacing: 0.05em;
+
+  color: #6D6D6D;
+
+}
+`
 export const ContainerOptions = styled.div`
   display: flex;
   justify-content: space-between;
