@@ -146,7 +146,6 @@ export default function Timeline() {
         setFormData(formInitialState)
         toast("Post criado com sucesso!", { autoClose: 1500 })
         setPublishing(false)
-        updatePostsList()
       })
       .catch((err) => {
         console.log(err)
