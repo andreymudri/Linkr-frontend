@@ -39,14 +39,14 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-left: 20px;
+  margin-left: 10px;
   // background: lightblue;
   @media (max-width: 768px) {
-    width: 80%;
+    width: 88%;
   }
 `
 export const ContainerImage = styled.div`
-  width: 50px;
+  width: 60px;
   height: 230px;
   // background: green;
   display: flex;
@@ -54,6 +54,7 @@ export const ContainerImage = styled.div`
   justify-content: space-between;
   @media (max-width: 768px) {
     width: 10%;
+    margin-right: 10px;
     height: 95%;
   }
 `
@@ -142,12 +143,13 @@ export const LikesContainer = styled.div`
   }
 `;
 export const ContainerComments = styled.div`
-  width: 50px;
+  width: 60px;
   height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  // background: orange;
   p {
     color: white;
     font-size: 10px;

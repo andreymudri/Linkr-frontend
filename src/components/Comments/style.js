@@ -17,6 +17,10 @@ overflow-y: auto;
     width: 0px;
   }
 // background: orange;
+@media (max-width: 768px) {
+    width: 100vw;
+    margin-left: 0px;
+  }
 `
 export const UserComment = styled.div`
 height: 68px;
@@ -25,6 +29,9 @@ display: flex;
 border-bottom: 1px solid #353535;
 margin-bottom: 10px;
 // background:blue;
+@media (max-width: 768px) {
+    width: 100vw;
+  }
 `
 export const CommentTexts = styled.div`
 display: flex;
@@ -75,6 +82,9 @@ position: sticky;
 padding: 10px;
 justify-content: space-between;
 // background:pink;
+@media (max-width: 768px) {
+    width: 100%;
+  }
 `
 export const MakeComment = styled.input`
 background: #252525;
@@ -92,6 +102,9 @@ padding: 10px;
     letter-spacing: 0.05em;
     color: #575757;
 }
+@media (max-width: 768px) {
+    width: 90%;
+  }
 `
 export const IconComment = styled(IoPaperPlaneOutline)`
 width: 20px;
