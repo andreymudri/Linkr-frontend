@@ -32,7 +32,8 @@ export const PrincipalContainer = styled.div`
 export const TrendingContainer = styled.div`
   position: absolute;
   width: 301px;
-  height: 60vh;
+  height: auto;
+  padding: 20px;
   left: 877px;
   top: 230px;
   background: #171717;
