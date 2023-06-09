@@ -47,3 +47,20 @@ export const Mobile = styled.div`
     display: none;
   }
 `;
+export const Menu = styled.div`
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 200px;
+  background: #171717;
+border-radius: 0px 0px 20px 20px;
+  padding: 10px;
+  font-family: 'Lato';
+font-style: normal;
+font-weight: 700;
+font-size: 17px;
+line-height: 20px;
+letter-spacing: 0.05em;
+color: #FFFFFF;
+text-align:center;
+`;
