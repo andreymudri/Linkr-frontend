@@ -37,8 +37,9 @@ export default function Post({ posts, updatePostsList }) {
   const [disableInput, setDisableInput] = useState(false)
   const [modalIsOpen, setIsOpen] = useState(false)
   const [deleting, setDeleting] = useState(false)
+  const [comment, setComment] = useState("")
   const postIdRef = useRef("")
-  const openComments = useRef(false)
+  const openComments = useRef([])
 
   const { token } = useContext(TokenContext)
   const { user } = useContext(UserContext)
@@ -90,6 +91,12 @@ export default function Post({ posts, updatePostsList }) {
       window.removeEventListener("keydown", handleKeyDown)
     }
   }, [])
+
+  useEffect(() => {
+    const initialOpenComments = posts.map(() => false);
+    openComments.current = initialOpenComments;
+  }, []);
+
 
   function handleKeyDown(event) {
     if (event.key === "Escape") {
@@ -218,7 +225,7 @@ export default function Post({ posts, updatePostsList }) {
       ) : (
         posts.map((p, index) => (
           <>
-          <UserPost data-test="post" key={index}>
+          <UserPost data-test="post" key={index} openComments={openComments.current[index]}>
             <ContainerImage>
               <Link to={`/user/${p.userId}`}>
                 <UserImage src={p.image} />
@@ -231,10 +238,11 @@ export default function Post({ posts, updatePostsList }) {
                 updatePostsList={updatePostsList}
               />
               <ContainerComments onClick={() => {
-                  openComments.current = !openComments.current
+                  openComments.current[index] = !openComments.current[index]
+                  updatePostsList();
                 }}>
                 <CommentIcon />
-                <p>0 comments</p>
+                <p>{p.commentsCount} comments</p>
               </ContainerComments>
             </ContainerImage>
             <Container>
@@ -294,11 +302,15 @@ export default function Post({ posts, updatePostsList }) {
               />
             </Container>
           </UserPost>
-          <CommentsContainer openComments={openComments}>
-            <Comments />
+          <CommentsContainer openComments={openComments.current[index]}>
+            <Comments comments={p.comments}/>
             <ContainerMakeComment>
                 <UserImage src={user.image} />
-                <MakeComment placeholder="Write a comment..."/>
+                <MakeComment
+                value={comment}
+                onChange={e => setComment(e.target.value)} 
+                placeholder="Write a comment..."
+                />
                 <IconComment/>
             </ContainerMakeComment>
           </CommentsContainer>

@@ -65,6 +65,7 @@ export const UserPost = styled.div`
   background: #171717;
   border-radius: 16px;
   padding: 20px;
+  margin-bottom: ${(props) => (props.openComments ? "0px" : "16px")};
   // background:pink;
   @media (max-width: 768px) {
     width: 100vw;
