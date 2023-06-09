@@ -10,7 +10,7 @@ export default function Comments({comments}){
 
     return (
         <>
-        {comments === null ? "" : (comments.map((c, index) => (
+        {comments?.map((c, index) => (
             <UserComment key={index}>
             
                 <UserImage src={c.commentedUserImage} />
@@ -25,7 +25,7 @@ export default function Comments({comments}){
                     </Comment>
                 </CommentTexts>
             </UserComment>
-         )))}
+         ))}
         </>
     )
 }

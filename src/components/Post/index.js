@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import {
+  Loader,
   UserImage,
   Username,
   UserPost,
@@ -28,8 +29,10 @@ import Likes from "../Likes.js"
 import PostsPreview from "../PostsPreview"
 import Comments from "../Comments"
 import { CommentsContainer, ContainerMakeComment, IconComment, MakeComment } from "../Comments/style"
+import InfiniteScroll from 'react-infinite-scroller'
+import loader from "../../assets/loaderr.gif"
 
-export default function Post({ posts, updatePostsList }) {
+export default function Post({ posts, updatePostsList, setPosts }) {
   const [descriptionInput, setDescriptionInput] = useState([])
   const [editingIndex, setEditingIndex] = useState(-1)
   const [newDescription, setNewDescription] = useState("")
@@ -43,6 +46,8 @@ export default function Post({ posts, updatePostsList }) {
   const descriptionRef = useRef(null)
   const newDescriptionRef = useRef(null)
   const openComments = useRef([])
+  const hasMore = useRef(true)
+  const page = useRef(1)
 
 
   const { token } = useContext(TokenContext)
@@ -162,6 +167,25 @@ export default function Post({ posts, updatePostsList }) {
     setPostId(postId)
   }
 
+  function getPostListWithPagination() {
+    axios
+      .get(`${ApiURL}/posts?page=${page.current}`, config)
+      .then((res) => {
+        if (typeof(res.data) === "object" && res.data.length !== 0) {
+          const newPosts = posts.concat(res.data)
+          console.log(newPosts)
+          setPosts(newPosts)
+        }
+        if (res.data.length < 10) {
+          hasMore.current = false
+        }
+        console.log(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
   function handleComment (postId, comment){
     axios.post(`${ApiURL}/posts/${postId}/comment`, { comment }, config)
       .then((res) => {
@@ -238,6 +262,21 @@ export default function Post({ posts, updatePostsList }) {
         </div>
       </Modal>
       <ToastContainer />
+      <InfiniteScroll
+        pageStart={1} // Número da página inicial
+        loadMore={() => {
+          page.current++
+          getPostListWithPagination()
+        }} // Função para carregar mais posts
+        hasMore={hasMore.current} // Indica se ainda há mais posts a carregar
+        loader={
+          hasMore.current === true ? 
+          (<Loader>
+            <img src={loader} alt="loading" />
+            <p>Loading more posts...</p>
+          </Loader>) : ""
+          } // Componente que será renderizado durante o carregamento dos posts
+      >
       {posts && posts.length === 0 ? (
         <NoPost data-test="message">There are no posts yet</NoPost>
       ) : (
@@ -341,6 +380,7 @@ export default function Post({ posts, updatePostsList }) {
           </>
         ))
       )}
+      </InfiniteScroll>
     </PostContainer>
   )
 }

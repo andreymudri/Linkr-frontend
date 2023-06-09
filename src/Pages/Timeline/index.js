@@ -29,6 +29,7 @@ import postApi from "../../services/postsApi.js"
 import { HashtagLink } from "../hashtag/style.js"
 import { useNavigate } from "react-router-dom"
 
+
 export default function Timeline() {
   const formInitialState = {
     postUrl: "",
@@ -208,7 +209,7 @@ export default function Timeline() {
         {posts === null ? (
           ""
         ) : (
-          <Post posts={posts} updatePostsList={updatePostsList} />
+          <Post posts={posts} setPosts={setPosts} updatePostsList={updatePostsList} />
         )}
       </Container>
       <TrendingContainer data-test="trending">
