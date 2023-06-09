@@ -38,7 +38,8 @@ export const TrendingContainer = styled.div`
   margin-top: -45px;
   margin-left: 25px;
   width: 301px;
-  height: 50vh;
+  height: auto;
+  padding: 20px;
   background: #171717;
   border-radius: 16px;
   display: flex;
