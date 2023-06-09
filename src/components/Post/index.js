@@ -145,14 +145,14 @@ export default function Post({ posts, updatePostsList }) {
       .then((res) => {
         setDeleting(false)
         setIsOpen(false)
-        toast(res.data)
+        toast(res.data, {autoClose: 1500})
         updatePostsList()
       })
       .catch((err) => {
         setDeleting(false)
         setIsOpen(false)
         console.log(err)
-        toast.error("Não foi possível excluir o post!")
+        toast.error("Delete failed. Try again later!", {autoClose: 1500})
       })
   }
 
