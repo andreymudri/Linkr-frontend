@@ -3,6 +3,9 @@ import { BiChevronDown } from "react-icons/bi";
 import { Image } from "../UserImage/style";
 
 export const Container = styled.div`
+  z-index: 1000;
+  top: 0px;
+  position: fixed;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,6 +23,7 @@ export const Container = styled.div`
     margin-left: 28px;
   }
 `;
+
 export const SubContainer = styled.div`
   display: flex;
   align-items: center;
@@ -33,4 +37,12 @@ export const Icon = styled(BiChevronDown)`
   font-size: 41px;
   margin-right: 16px;
   color: #ffffff;
+`;
+
+export const Mobile = styled.div`
+  display: flex;
+  justify-content: center;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;

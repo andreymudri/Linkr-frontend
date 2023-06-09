@@ -2,7 +2,8 @@ import styled, { css } from "styled-components";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 
 export const Container = styled.div`
-  margin-top: ${(props) => (props.disabled ? "0" : "80px")};
+  position: fixed;
+  top: 12px;
   border-radius: 8px;
   background: #e7e7e7;
   display: flex;
@@ -10,6 +11,8 @@ export const Container = styled.div`
   width: 563px;
   @media (max-width: 768px) {
     width: 350px;
+    margin-top: 0px;
+    position: relative;
   }
 `;
 
@@ -46,9 +49,10 @@ export const SearchIcon = styled(HiMagnifyingGlass)`
 `;
 
 export const SearchUsers = styled.div`
+  z-index: 999;
   max-width: 563px;
   width: 100%;
-  height: 75px;
+  height: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
