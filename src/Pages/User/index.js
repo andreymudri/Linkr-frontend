@@ -10,6 +10,7 @@ import {
   TrendingContainer,
   UserAndFollow,
   PostContainer,
+  ContainerPostTrend,
 } from "./style";
 import userApi from "../../services/userAPI";
 import postApi from "../../services/postsApi.js";
@@ -83,17 +84,23 @@ export default function User() {
           )
         }
       </UserAndFollow>
-      <PostContainer>
-        <Post posts={userById && userById.posts} />
-      </PostContainer>
-      <TrendingContainer data-test="trending">
-        <div>trending</div>
-        {trendingHashtags.map((h) => (
-          <HashtagLink data-test="hashtag" key={h.id} to={`/hashtag/${h.name}`}>
-            # {h.name}
-          </HashtagLink>
-        ))}
-      </TrendingContainer>
+      <ContainerPostTrend>
+        <PostContainer>
+          <Post posts={userById && userById.posts} />
+        </PostContainer>
+        <TrendingContainer data-test="trending">
+          <div>trending</div>
+          {trendingHashtags.map((h) => (
+            <HashtagLink
+              data-test="hashtag"
+              key={h.id}
+              to={`/hashtag/${h.name}`}
+            >
+              # {h.name}
+            </HashtagLink>
+          ))}
+        </TrendingContainer>
+      </ContainerPostTrend>
     </Container>
   );
 }

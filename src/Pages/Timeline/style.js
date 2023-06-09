@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { Image } from "../../components/UserImage/style"
 
 export const Container = styled.div`
+  margin-top: 53px;
   display: flex;
   flex-direction: column;
   width: 100%;

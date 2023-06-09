@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  margin-top: 53px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -34,11 +35,10 @@ export const Title = styled.div`
 `;
 
 export const TrendingContainer = styled.div`
-  position: absolute;
+  margin-top: -45px;
+  margin-left: 25px;
   width: 301px;
-  height: 60vh;
-  left: 877px;
-  top: 287px;
+  height: auto;
   background: #171717;
   border-radius: 16px;
   display: flex;
@@ -65,13 +65,19 @@ export const TrendingContainer = styled.div`
 export const UserAndFollow = styled.div`
   max-width: 757px;
   width: 100%;
-  margin-top: 53px;
   margin-bottom: 53px;
   display: flex;
   align-items: center;
+  @media (max-width: 768px) {
+    width: 93%;
+  }
 `;
 
 export const PostContainer = styled.div`
-  margin-top: -55px;
-  margin-right: 400px;
+  margin-top: -73px;
+  margin-left: -10px;
+`;
+
+export const ContainerPostTrend = styled.div`
+  display: flex;
 `;

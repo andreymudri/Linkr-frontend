@@ -5,8 +5,6 @@ import { useState, useContext, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
 import followApi from "../../services/followApi.js";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 export default function Search({ token }) {
   const [search, setSearch] = useState(null);
@@ -26,7 +24,7 @@ export default function Search({ token }) {
     searchApi
       .getSearch(searchValue, token)
       .then((res) => setSearch(res.data))
-      .catch((err) => console.log(err.response.data));
+      .catch();
   }
 
   async function getFollow(id) {
@@ -34,7 +32,6 @@ export default function Search({ token }) {
       const res = await followApi.getFollowButton(id, user.id);
       return res.data.length !== 0;
     } catch (err) {
-      toast.error("Could not perform the operation");
       return false;
     }
   }
@@ -78,7 +75,6 @@ export default function Search({ token }) {
 
   return (
     <Container disabled={disabled}>
-      <ToastContainer />
       <ContainerSearch>
         <DebounceInput
           minLength={3}
