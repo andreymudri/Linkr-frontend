@@ -12,41 +12,51 @@ export const ContainerOptions = styled.div`
   height: 23px;
   // background: yellow;
   @media (max-width: 768px) {
-    width: 90%;
+    width: 100%;
   }
 `
 export const Icons = styled.div`
   width: 50px;
   height: 23px;
   // background:blue;
+  display: flex;
   @media (max-width: 768px) {
-    width: 30%;
+    width: 12%;
   }
 `
 export const TrashIcon = styled(AiFillDelete)`
   width: 20px;
   height: 20px;
   color: #ffffff;
+  @media (max-width: 768px) {
+    width: 50%;
+    height: 100%;
+  }
 `
 export const EditIcon = styled(FaPencilAlt)`
   width: 16px;
   height: 16px;
   margin-right: 8px;
   color: #ffffff;
+  @media (max-width: 768px) {
+    width: 50%;
+    height: 80%;
+    margin-top: 7%;
+  }
 `
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-left: 20px;
+  margin-left: 10px;
   // background: lightblue;
   @media (max-width: 768px) {
-    width: 80%;
+    width: 88%;
   }
 `
 export const ContainerImage = styled.div`
-  width: 50px;
+  width: 60px;
   height: 230px;
   // background: green;
   display: flex;
@@ -54,6 +64,7 @@ export const ContainerImage = styled.div`
   justify-content: space-between;
   @media (max-width: 768px) {
     width: 10%;
+    margin-right: 10px;
     height: 95%;
   }
 `
@@ -101,6 +112,7 @@ export const Description = styled.div`
   color: #b7b7b7;
   @media (max-width: 768px) {
     width: 90%;
+    font-size: 15px;
   }
 `;
 
@@ -142,12 +154,13 @@ export const LikesContainer = styled.div`
   }
 `;
 export const ContainerComments = styled.div`
-  width: 50px;
+  width: 60px;
   height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  // background: orange;
   p {
     color: white;
     font-size: 10px;
