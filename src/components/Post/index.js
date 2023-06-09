@@ -235,7 +235,7 @@ export default function Post({ posts, updatePostsList }) {
         </div>
       </Modal>
       <ToastContainer />
-      {posts.length === 0 ? (
+      {posts && posts.length === 0 ? (
         <NoPost data-test="message">There are no posts yet</NoPost>
       ) : (
         posts.map((p, index) => (
