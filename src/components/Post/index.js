@@ -16,6 +16,8 @@ import {
   ContainerComments,
   CommentIcon,
   NoPost,
+  RepostContainer,
+  RepostIcon,
 } from "./style"
 import axios from "axios"
 import { useContext, useEffect, useState, useRef } from "react"
@@ -281,7 +283,8 @@ export default function Post({ posts, updatePostsList, setPosts }) {
         <NoPost data-test="message">There are no posts yet</NoPost>
       ) : (
         posts.map((p, index) => (
-          <>
+          <RepostContainer>
+                        {p.isRepost ? (<><h1><RepostIcon/>Re-posted by <strong>{" "} {p.username}</strong></h1></>) : ""}
           <UserPost data-test="post" key={index} openComments={openComments.current[index]}>
             <ContainerImage>
               <Link to={`/user/${p.userId}`}>
@@ -377,7 +380,7 @@ export default function Post({ posts, updatePostsList, setPosts }) {
                 }}/>
             </ContainerMakeComment>
           </CommentsContainer>
-          </>
+          </RepostContainer>
         ))
       )}
       </InfiniteScroll>
